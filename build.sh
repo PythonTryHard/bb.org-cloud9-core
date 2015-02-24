@@ -51,6 +51,12 @@ if [ -d standalonebuild ] ; then
 	cd ./standalonebuild/
 	npm install systemd --arch=armhf
 	npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc nak pty.js --arch=armhf
+
+	#Strip .git directories, saves over 20Mb
+	cd plugins/
+	find . -name ".git" | xargs rm -rf
+	cd ../
+
 	cd ../
 
 	tar -cJvf ${package_name}_${package_version}-build.tar.xz standalonebuild/
