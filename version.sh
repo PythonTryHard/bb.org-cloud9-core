@@ -4,7 +4,7 @@
 
 package_name="c9v3"
 debian_pkg_name="${package_name}"
-package_version="3.0.954-git20150223"
+package_version="3.0.1-git20150223"
 package_source="${package_name}_${package_version}.orig.tar.xz"
 src_dir="${package_name}_${package_version}"
 
