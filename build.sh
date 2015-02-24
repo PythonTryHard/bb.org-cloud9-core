@@ -20,6 +20,10 @@ git checkout ${git_sha} -b tmp
 
 patch -p1 < ${DIR}/patches/0001-bb.org-defaults.patch
 patch -p1 < ${DIR}/patches/0002-bb.org-use-systemd.patch
+patch -p1 < ${DIR}/patches/0003-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch
+
+mkdir -p1 ~/.c9/
+touch ~/.c9/installed
 
 echo ""
 echo "build: [./scripts/install-sdk.sh]"
@@ -28,10 +32,6 @@ echo "build: [./scripts/install-sdk.sh]"
 echo ""
 echo "build: [npm install --arch=armhf]"
 npm install --arch=armhf
-
-echo ""
-echo "build: [npm install systemd --arch=armhf]"
-npm install systemd --arch=armhf
 
 rm -Rf build/standalone
 sync

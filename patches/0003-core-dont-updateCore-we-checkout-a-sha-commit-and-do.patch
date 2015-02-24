@@ -1,0 +1,34 @@
+From 964f7eefcf93e0776b9eb762df8ff7336cac35a7 Mon Sep 17 00:00:00 2001
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Tue, 24 Feb 2015 15:00:02 -0600
+Subject: [PATCH 3/3] core: dont updateCore (we checkout a sha commit) and dont
+ autorun
+
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+---
+ scripts/install-sdk.sh | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/scripts/install-sdk.sh b/scripts/install-sdk.sh
+index d133231..b181d0f 100755
+--- a/scripts/install-sdk.sh
++++ b/scripts/install-sdk.sh
+@@ -102,12 +102,12 @@ installGlobalDeps() {
+ NPM=npm
+ NODE=node
+ 
+-updateCore || true
++#updateCore || true
+ 
+ installGlobalDeps
+ updateAllPackages
+ updateNodeModules
+ 
+ echo "Success!"
+-echo "run '${yellow}node server.js -p 8181 -l 0.0.0.0 -a :${resetColor}' to launch Cloud9"
+-"$NODE" server.js -p 8181 -l 0.0.0.0 -a :
++#echo "run '${yellow}node server.js -p 8181 -l 0.0.0.0 -a :${resetColor}' to launch Cloud9"
++#"$NODE" server.js -p 8181 -l 0.0.0.0 -a :
+-- 
+2.1.4
+
