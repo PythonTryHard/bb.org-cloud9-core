@@ -1,0 +1,69 @@
+From 22e8d279522b3926b09fa327c6fd8da6d098564b Mon Sep 17 00:00:00 2001
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Fri, 19 Dec 2014 10:25:47 -0600
+Subject: [PATCH 2/2] bb.org: use systemd
+
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+---
+ .../connect.remote-address/remote-address.js               | 14 +++-----------
+ node_modules/connect-architect/connect/connect-plugin.js   |  8 ++++++--
+ 2 files changed, 9 insertions(+), 13 deletions(-)
+
+diff --git a/node_modules/connect-architect/connect.remote-address/remote-address.js b/node_modules/connect-architect/connect.remote-address/remote-address.js
+index 963ba9c..5b4d64e 100644
+--- a/node_modules/connect-architect/connect.remote-address/remote-address.js
++++ b/node_modules/connect-architect/connect.remote-address/remote-address.js
+@@ -8,15 +8,7 @@ module.exports = function(options, imports, register) {
+ };
+ 
+ function remoteAddress(req, res, next) {
+-    req.remoteAddress = 
+-        req.headers['x-forwarded-for'] || 
+-        req.socket.remoteAddress ||
+-        req.connection.remoteAddress || 
+-        req.connection.socket.remoteAddress;
+-
+-    req.proto = 
+-        req.headers["x-forwarded-proto"] || 
+-        (req.socket.encrypted ? "https" : "http");
+-        
++    req.remoteAddress = "127.0.0.1";
++    req.proto = "http"
+     next();
+-}
+\ No newline at end of file
++}
+diff --git a/node_modules/connect-architect/connect/connect-plugin.js b/node_modules/connect-architect/connect/connect-plugin.js
+index 6e64686..f60fc00 100644
+--- a/node_modules/connect-architect/connect/connect-plugin.js
++++ b/node_modules/connect-architect/connect/connect-plugin.js
+@@ -3,6 +3,7 @@ var netutil = require("netutil");
+ var connect = require("connect");
+ var http = require("http");
+ var https = require("https");
++require('systemd');
+ 
+ module.exports = function startup(options, imports, register) {
+     var globalOptions = options.globals ? merge([options.globals]) : {};
+@@ -123,7 +124,10 @@ module.exports = function startup(options, imports, register) {
+             server = http.createServer(app);
+         }
+ 
+-        server.listen(port, host, function(err) {
++        //server.listen(port, host, function(err) {
++        console.log('LISTEN_FDS = ' + process.env.LISTEN_FDS);
++        server.listen('systemd');
++        server.on('listening', function(err) {
+             if (err)
+                 return register(err);
+ 
+@@ -221,4 +225,4 @@ function merge(objects) {
+         }
+     }
+     return result;
+-}
+\ No newline at end of file
++}
+-- 
+2.1.3
+
