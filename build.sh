@@ -60,7 +60,7 @@ if [ -d standalonebuild ] ; then
 	cd ../
 
 	tar -cJvf ${package_name}_${package_version}-build.tar.xz standalonebuild/
-	cp -v ${package_name}_${package_version}-build.tar.xz /mnt/farm/testing/
+	cp -v ${package_name}_${package_version}-build.tar.xz /var/www/html/repos.rcn-ee.net/pkgs/c9v3/
 fi
 
 cd ${DIR}/
