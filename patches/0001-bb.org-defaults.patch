@@ -1,6 +1,6 @@
-From 18a6bcd88d9d47ea68dfafe52f59319b0b306c9f Mon Sep 17 00:00:00 2001
+From 025cefd9aa46eaa28ae3c3f1699ea48bcee599dd Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Tue, 24 Feb 2015 12:50:36 -0600
+Date: Mon, 4 May 2015 12:18:37 -0500
 Subject: [PATCH] bb.org defaults
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
@@ -9,12 +9,12 @@ Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
  1 file changed, 8 insertions(+), 4 deletions(-)
 
 diff --git a/settings/standalone.js b/settings/standalone.js
-index 92a162c..1f8d03e 100644
+index 4fd9ac7..7cb0f75 100644
 --- a/settings/standalone.js
 +++ b/settings/standalone.js
-@@ -28,7 +28,8 @@ module.exports = function(manifest, installPath) {
-     var config = {
+@@ -30,7 +30,8 @@ module.exports = function(manifest, installPath) {
          standalone: true,
+         startBridge: true,
          manifest: manifest,
 -        workspaceDir: workspaceDir,
 +        //workspaceDir: workspaceDir,
@@ -22,9 +22,9 @@ index 92a162c..1f8d03e 100644
          projectName: path.basename(workspaceDir),
          homeDir: home,
          workspaceId: "devel",
-@@ -38,11 +39,13 @@ module.exports = function(manifest, installPath) {
-         uid: "-1",
+@@ -41,12 +42,14 @@ module.exports = function(manifest, installPath) {
          dev: true,
+         sdk: sdk,
          pid: process.pid,
 -        port: process.env.PORT || 8181,
 +        //port: process.env.PORT || 8181,
@@ -32,13 +32,14 @@ index 92a162c..1f8d03e 100644
          host: process.env.IP || "0.0.0.0",
          testing: false,
          platform: process.platform,
+         arch: process.arch,
 -        tmux: path.join(installPath, "bin/tmux"),
 +        //tmux: path.join(installPath, "bin/tmux"),
 +        tmux: "/usr/bin/tmux",
          nakBin: path.join(__dirname, "../node_modules/nak/bin/nak"),
          bashBin: "bash",
          nodeBin: [process.execPath],
-@@ -57,7 +60,8 @@ module.exports = function(manifest, installPath) {
+@@ -61,7 +64,8 @@ module.exports = function(manifest, installPath) {
          homeUrl: "/home",
          collab: false,
          installed: true,
