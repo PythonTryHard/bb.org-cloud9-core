@@ -18,9 +18,12 @@ cd ${package_name}_${package_version}/
 
 git checkout ${git_sha} -b tmp
 
-patch -p1 < ${DIR}/patches/0001-bb.org-defaults.patch
-patch -p1 < ${DIR}/patches/0002-bb.org-use-systemd.patch
-patch -p1 < ${DIR}/patches/0003-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch
+git_apply="git apply"
+#git_apply="git am"
+
+${git_apply} ${DIR}/patches/0001-bb.org-defaults.patch
+${git_apply} ${DIR}/patches/0002-bb.org-use-systemd.patch
+${git_apply} ${DIR}/patches/0003-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch
 
 mkdir -p ~/.c9/
 touch ~/.c9/installed
