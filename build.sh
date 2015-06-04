@@ -62,7 +62,44 @@ if [ "x${arch}" = "xarmv7l" ] ; then
 
 		cd ./standalonebuild/
 		npm install systemd --arch=armhf
-		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc nak pty.js --arch=armhf
+		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc --arch=armhf
+
+		#https://github.com/c9/install/blob/master/install.sh
+
+		project="nak"
+		echo ""
+		echo "Build: [npm install ${project} --arch=armhf]"
+		npm install ${project} --arch=armhf
+
+		project="pty.js@0.2.7-1"
+		echo ""
+		echo "Build: [npm install ${project} --arch=armhf]"
+		npm install ${project} --arch=armhf
+
+		project="coffee"
+		echo ""
+		echo "Build: [npm install ${project} --arch=armhf]"
+		npm install ${project} --arch=armhf
+
+		project="less"
+		echo ""
+		echo "Build: [npm install ${project} --arch=armhf]"
+		npm install ${project} --arch=armhf
+
+		project="sass"
+		echo ""
+		echo "Build: [npm install ${project} --arch=armhf]"
+		npm install ${project} --arch=armhf
+
+		project="typescript"
+		echo ""
+		echo "Build: [npm install ${project} --arch=armhf]"
+		npm install ${project} --arch=armhf
+
+		project="stylus"
+		echo ""
+		echo "Build: [npm install ${project} --arch=armhf]"
+		npm install ${project} --arch=armhf
 
 		#Strip .git directories, saves over 20Mb
 		cd plugins/
