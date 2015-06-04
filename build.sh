@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 . version.sh
+arch=$(uname -m)
 
 DIR="$PWD"
 
@@ -33,8 +34,13 @@ echo "build: [./scripts/install-sdk.sh]"
 ./scripts/install-sdk.sh
 
 echo ""
-echo "build: [npm install --arch=armhf]"
-npm install --arch=armhf
+if [ "x${arch}" = "xarmv7l" ] ; then
+	echo "build: [npm install --arch=armhf]"
+	npm install --arch=armhf
+else
+	echo "build: [npm install]"
+	npm install
+fi
 
 rm -Rf build/standalone
 sync
@@ -48,22 +54,24 @@ echo ""
 echo "build: [./build/build-standalone.sh]"
 ./build/build-standalone.sh
 
-cd ./build/
-if [ -d standalonebuild ] ; then
+if [ "x${arch}" = "xarmv7l" ] ; then
+	cd ./build/
+	if [ -d standalonebuild ] ; then
 
-	cd ./standalonebuild/
-	npm install systemd --arch=armhf
-	npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc nak pty.js --arch=armhf
+		cd ./standalonebuild/
+		npm install systemd --arch=armhf
+		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc nak pty.js --arch=armhf
 
-	#Strip .git directories, saves over 20Mb
-	cd plugins/
-	find . -name ".git" | xargs rm -rf
-	cd ../
+		#Strip .git directories, saves over 20Mb
+		cd plugins/
+		find . -name ".git" | xargs rm -rf
+		cd ../
 
-	cd ../
+		cd ../
 
-	tar -cJvf ${package_name}_${package_version}-build.tar.xz standalonebuild/
-	cp -v ${package_name}_${package_version}-build.tar.xz /mnt/farm/testing/
+		tar -cJvf ${package_name}_${package_version}-build.tar.xz standalonebuild/
+		cp -v ${package_name}_${package_version}-build.tar.xz /mnt/farm/testing/
+	fi
 fi
 
 cd ${DIR}/
