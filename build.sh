@@ -19,6 +19,27 @@ cd ${package_name}_${package_version}/
 
 git checkout ${git_sha} -b tmp
 
+#20150513
+echo ""
+#jsonalyzer calls initDB before checkInstall
+echo "revert: [https://github.com/c9/core/commit/80c06144f934c4d5e6d1d8de36fdd3e865c19e2d]"
+git revert --no-edit 80c06144f934c4d5e6d1d8de36fdd3e865c19e2d
+
+echo ""
+#use runInThisContext instead of runInNewContext
+echo "revert: [https://github.com/c9/core/commit/8091c4b789bcec53f7c8dc610a46efc11f5d9b50]"
+git revert --no-edit 8091c4b789bcec53f7c8dc610a46efc11f5d9b50
+
+#20150510
+echo ""
+#fsOptions.homeDir is missing on ssh workspaces
+echo "revert: [https://github.com/c9/core/commit/2c273b97a948f4a318ec73d826e1e888c676474b]"
+git revert --no-edit 2c273b97a948f4a318ec73d826e1e888c676474b
+
+#20150509
+echo ""
+#use node from c9 dir
+echo "revert: [https://github.com/c9/core/commit/9e1bb472c6e671bba702dc8824526632f90af89d]"
 git revert --no-edit 9e1bb472c6e671bba702dc8824526632f90af89d
 
 git_apply="git apply"
