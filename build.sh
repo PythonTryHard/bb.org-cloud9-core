@@ -19,6 +19,8 @@ cd ${package_name}_${package_version}/
 
 git checkout ${git_sha} -b tmp
 
+git revert --no-edit 9e1bb472c6e671bba702dc8824526632f90af89d
+
 git_apply="git apply"
 #git_apply="git am"
 
@@ -35,28 +37,27 @@ echo ""
 echo "build: [./scripts/install-sdk.sh]"
 ./scripts/install-sdk.sh
 
-echo ""
 if [ "x${arch}" = "xarmv7l" ] ; then
+	echo ""
 	echo "build: [npm install --arch=armhf]"
 	npm install --arch=armhf
-else
-	echo "build: [npm install]"
-	npm install
 fi
 
-rm -Rf build/standalone
-sync
-sync
+if [ ! "x${arch}" = "xarmv7l" ] ; then
+	node server.js -p 8181 -l 0.0.0.0 -a :
+else
+	rm -Rf build/standalone
+	sync
+	sync
 
-echo ""
-echo "build: [./scripts/makestandalone.sh --compress]"
-./scripts/makestandalone.sh --compress
+	echo ""
+	echo "build: [./scripts/makestandalone.sh --compress]"
+	./scripts/makestandalone.sh --compress
 
-echo ""
-echo "build: [./build/build-standalone.sh]"
-./build/build-standalone.sh
+	echo ""
+	echo "build: [./build/build-standalone.sh]"
+	./build/build-standalone.sh
 
-if [ "x${arch}" = "xarmv7l" ] ; then
 	cd ./build/
 	if [ -d standalonebuild ] ; then
 
