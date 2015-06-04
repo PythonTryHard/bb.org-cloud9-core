@@ -23,7 +23,9 @@ git_apply="git apply"
 #git_apply="git am"
 
 ${git_apply} ${DIR}/patches/0001-bb.org-defaults.patch
-${git_apply} ${DIR}/patches/0002-bb.org-use-systemd.patch
+if [ "x${arch}" = "xarmv7l" ] ; then
+	${git_apply} ${DIR}/patches/0002-bb.org-use-systemd.patch
+fi
 ${git_apply} ${DIR}/patches/0003-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch
 
 mkdir -p ~/.c9/
