@@ -19,46 +19,6 @@ cd ${package_name}_${package_version}/
 
 git checkout ${git_sha} -b tmp
 
-#20150517
-#node_modules/vfs-local/localfs.js
-#do not load pty.js when testing connection since that can crash node …
-echo "revert: [https://github.com/c9/core/commit/9a865df0ece860f15c3aea5284a6c490a7a9d920]"
-git revert --no-edit 9a865df0ece860f15c3aea5284a6c490a7a9d920
-
-#20150528
-#plugins/c9.vfs.extend/collab-server.js removed in:
-#https://github.com/c9/core/commit/3931e937cd293a7d4efa738987da5597a1dbe5a8
-
-#20150513
-#echo ""
-#jsonalyzer calls initDB before checkInstall
-#echo "revert: [https://github.com/c9/core/commit/80c06144f934c4d5e6d1d8de36fdd3e865c19e2d]"
-#git revert --no-edit 80c06144f934c4d5e6d1d8de36fdd3e865c19e2d
-
-echo ""
-#node_modules/vfs-local/localfs.js
-#send more errors from worker to raygun
-echo "revert: [https://github.com/c9/core/commit/8a6d9ac4b90dd27c091f9ef91b37669203b0fafd]"
-git revert --no-edit 8a6d9ac4b90dd27c091f9ef91b37669203b0fafd
-
-echo ""
-#node_modules/vfs-local/localfs.js
-#use runInThisContext instead of runInNewContext
-echo "revert: [https://github.com/c9/core/commit/8091c4b789bcec53f7c8dc610a46efc11f5d9b50]"
-git revert --no-edit 8091c4b789bcec53f7c8dc610a46efc11f5d9b50
-
-#20150510
-#echo ""
-#fsOptions.homeDir is missing on ssh workspaces
-#echo "revert: [https://github.com/c9/core/commit/2c273b97a948f4a318ec73d826e1e888c676474b]"
-#git revert --no-edit 2c273b97a948f4a318ec73d826e1e888c676474b
-
-#20150509
-#echo ""
-#use node from c9 dir
-#echo "revert: [https://github.com/c9/core/commit/9e1bb472c6e671bba702dc8824526632f90af89d]"
-#git revert --no-edit 9e1bb472c6e671bba702dc8824526632f90af89d
-
 git_apply="git apply"
 
 #git_apply="git am"
@@ -66,7 +26,7 @@ git_apply="git apply"
 echo ""
 echo "patches"
 
-${git_apply} ${DIR}/patches/0001-Revert-use-node-from-c9-dir.patch
+${git_apply} ${DIR}/patches/0001-bb.org-big-revert.patch
 
 ${git_apply} ${DIR}/patches/0001-bb.org-defaults.patch
 if [ "x${arch}" = "xarmv7l" ] ; then

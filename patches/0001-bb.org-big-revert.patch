@@ -1,14 +1,14 @@
-From afffe983cb092eb8800e1a5828aa6f512124a962 Mon Sep 17 00:00:00 2001
+From 9d7b39b647c89dc3d557381c1eef7f585b07b3db Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Thu, 4 Jun 2015 20:38:11 -0500
-Subject: [PATCH] Revert "use node from c9 dir"
+Date: Fri, 5 Jun 2015 08:38:03 -0500
+Subject: [PATCH] bb.org: big revert
 
-This reverts commit 9e1bb472c6e671bba702dc8824526632f90af89d.
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
- node_modules/vfs-child/parent.js  | 23 ++++-------------------
- node_modules/vfs-local/localfs.js | 28 +++++++++++++++++-----------
+ node_modules/vfs-child/parent.js  | 23 ++++---------------
+ node_modules/vfs-local/localfs.js | 48 ++++++++++++++++++++++++---------------
  settings/standalone.js            |  4 ++--
- 3 files changed, 23 insertions(+), 32 deletions(-)
+ 3 files changed, 36 insertions(+), 39 deletions(-)
 
 diff --git a/node_modules/vfs-child/parent.js b/node_modules/vfs-child/parent.js
 index e47c083..733570c 100644
@@ -52,13 +52,14 @@ index e47c083..733570c 100644
  
      // Override Consumer's disconnect to kill the child process afterwards
 diff --git a/node_modules/vfs-local/localfs.js b/node_modules/vfs-local/localfs.js
-index 78e8002..9996d50 100644
+index 4a09ddb..9996d50 100644
 --- a/node_modules/vfs-local/localfs.js
 +++ b/node_modules/vfs-local/localfs.js
-@@ -66,22 +66,28 @@ function logToFile(message){
+@@ -66,23 +66,28 @@ function logToFile(message){
  module.exports = function setup(fsOptions) {
      var pty;
      if (!fsOptions.nopty) {
+-        // on darwin trying to load binary for a wrong version crashes the process
 -        [process.env.HOME + "/.c9/node_modules/pty.js", "pty.js", "pty.nw.js"].some(function(p) {
 +        var e1;
 +        try {
@@ -95,6 +96,32 @@ index 78e8002..9996d50 100644
      }
  
      var TMUX       = fsOptions.tmuxBin || "tmux";
+@@ -2453,12 +2458,19 @@ function consumeStream(stream, callback) {
+ function evaluate(code, name) {
+     var exports = {};
+     var module = { exports: exports };
+-    var fn = vm.runInThisContext(
+-        "(function(require, exports, module, __dirname, __filename) {"
+-            + code
+-            + "})"
+-        , name || "dynamic-" + Date.now().toString(36));
+-    fn(require, exports, module, "", "");
++    vm.runInNewContext(code, {
++        require: require,
++        exports: exports,
++        module: module,
++        console: console,
++        global: global,
++        process: process,
++        Buffer: Buffer,
++        setTimeout: setTimeout,
++        clearTimeout: clearTimeout,
++        setInterval: setInterval,
++        clearInterval: clearInterval
++    }, name || "dynamic-" + Date.now().toString(36), true);
+     return module.exports;
+ }
+ 
 diff --git a/settings/standalone.js b/settings/standalone.js
 index 6be30d8..efc2358 100644
 --- a/settings/standalone.js
