@@ -1,0 +1,115 @@
+From afffe983cb092eb8800e1a5828aa6f512124a962 Mon Sep 17 00:00:00 2001
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Thu, 4 Jun 2015 20:38:11 -0500
+Subject: [PATCH] Revert "use node from c9 dir"
+
+This reverts commit 9e1bb472c6e671bba702dc8824526632f90af89d.
+---
+ node_modules/vfs-child/parent.js  | 23 ++++-------------------
+ node_modules/vfs-local/localfs.js | 28 +++++++++++++++++-----------
+ settings/standalone.js            |  4 ++--
+ 3 files changed, 23 insertions(+), 32 deletions(-)
+
+diff --git a/node_modules/vfs-child/parent.js b/node_modules/vfs-child/parent.js
+index e47c083..733570c 100644
+--- a/node_modules/vfs-child/parent.js
++++ b/node_modules/vfs-child/parent.js
+@@ -17,32 +17,17 @@ function Parent(fsOptions) {
+     }
+     options.stdio = options.customFds = [-1, -1, 2];
+     var args = [require.resolve('./child.js'), JSON.stringify(fsOptions)];
+-    var nodeBin = fsOptions.nodeBin || [process.execPath];
++    var executablePath = process.execPath;
+     var child;
+ 
+     // Override Consumer's connect since the transport logic is internal to this module
+     this.connect = connect.bind(this);
+     function connect(callback) {
+-        child = spawn(nodeBin[0], args, options);
++        child = spawn(executablePath, args, options);
+         child.stdin.readable = true;
+-        Consumer.prototype.connect.call(this, [child.stdout, child.stdin], tryNext);
+-        child.on("exit", disconnect);
+-        child.on("error", tryNext);
++        Consumer.prototype.connect.call(this, [child.stdout, child.stdin], callback);
+         child.stdin.resume();
+-        var _self = this;
+-        // try all possible locations of node before giving up
+-        function tryNext(err, vfs) {
+-            if (!child) return;
+-            child.removeListener("error", tryNext);
+-            if (err && err.code == "ENOENT" && nodeBin.length > 1) {
+-                child = null;
+-                nodeBin.shift();
+-                _self.emit("error", err);
+-                _self.connect(callback);
+-            } else {
+-                callback(err, vfs);
+-            }
+-        }
++        child.on("exit", disconnect);
+     }
+ 
+     // Override Consumer's disconnect to kill the child process afterwards
+diff --git a/node_modules/vfs-local/localfs.js b/node_modules/vfs-local/localfs.js
+index 78e8002..9996d50 100644
+--- a/node_modules/vfs-local/localfs.js
++++ b/node_modules/vfs-local/localfs.js
+@@ -66,22 +66,28 @@ function logToFile(message){
+ module.exports = function setup(fsOptions) {
+     var pty;
+     if (!fsOptions.nopty) {
+-        [process.env.HOME + "/.c9/node_modules/pty.js", "pty.js", "pty.nw.js"].some(function(p) {
++        var e1;
++        try {
++            pty = require('pty.js');
++        } catch(e) {
++            e1 = e;
++            
+             try {
+-                pty = require(p);
+-                return true;
+-            } catch(e) {
+-                console.warn(e, p);
++                if (os.platform() == "darwin" && os.release() == "11.4.2") 
++                    throw new Error("Unsupported Platform " + os.platform() + " " + os.release());
++                    
++                pty = require('pty.nw.js');
++            } catch(e2) {
++                console.warn("unable to initialize pty.js:");
++                console.warn(e1, e2);
++                pty = function(){};
+             }
+-        });
+-        if (!pty)
+-            console.warn("unable to initialize pty.js:");
++        }
+     }
+-    if (!pty) {
+-        pty = function(command, options, callback) {
++    else {
++        pty = function(){
+             console.log("PTY is not supported.");
+         };
+-        pty.spawn = pty;
+     }
+ 
+     var TMUX       = fsOptions.tmuxBin || "tmux";
+diff --git a/settings/standalone.js b/settings/standalone.js
+index 6be30d8..efc2358 100644
+--- a/settings/standalone.js
++++ b/settings/standalone.js
+@@ -16,8 +16,8 @@ module.exports = function(manifest, installPath) {
+     
+     if (win32 && process.env.HOME === undefined) {
+         process.env.HOME = process.env.HOMEDRIVE + process.env.HOMEPATH;
+-        if (!/msys\/bin|Git\/bin/.test(process.env.PATH))
+-            process.env.PATH = path.join(process.env.HOME, ".c9", "msys/bin") + ";" + process.env.PATH;
++        if (!/msys\/bin|Git\/bin/.test(process.PATH))
++            process.PATH = path.join(process.env.HOME, ".c9", "msys/bin") + ";" + process.PATH;
+     }
+     
+     var home = process.env.HOME;
+-- 
+2.1.4
+
