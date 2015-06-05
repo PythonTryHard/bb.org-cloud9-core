@@ -35,7 +35,7 @@ fi
 ${git_apply} ${DIR}/patches/0003-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch
 
 mkdir -p ~/.c9/
-touch ~/.c9/installed
+echo 1 > ~/.c9/installed
 
 echo ""
 echo "build: [./scripts/install-sdk.sh]"
