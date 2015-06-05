@@ -20,6 +20,7 @@ cd ${package_name}_${package_version}/
 git checkout ${git_sha} -b tmp
 
 #20150517
+#node_modules/vfs-local/localfs.js
 #do not load pty.js when testing connection since that can crash node …
 echo "revert: [https://github.com/c9/core/commit/9a865df0ece860f15c3aea5284a6c490a7a9d920]"
 git revert --no-edit 9a865df0ece860f15c3aea5284a6c490a7a9d920
@@ -35,11 +36,13 @@ git revert --no-edit 9a865df0ece860f15c3aea5284a6c490a7a9d920
 #git revert --no-edit 80c06144f934c4d5e6d1d8de36fdd3e865c19e2d
 
 echo ""
+#node_modules/vfs-local/localfs.js
 #send more errors from worker to raygun
 echo "revert: [https://github.com/c9/core/commit/8a6d9ac4b90dd27c091f9ef91b37669203b0fafd]"
 git revert --no-edit 8a6d9ac4b90dd27c091f9ef91b37669203b0fafd
 
 echo ""
+#node_modules/vfs-local/localfs.js
 #use runInThisContext instead of runInNewContext
 echo "revert: [https://github.com/c9/core/commit/8091c4b789bcec53f7c8dc610a46efc11f5d9b50]"
 git revert --no-edit 8091c4b789bcec53f7c8dc610a46efc11f5d9b50
