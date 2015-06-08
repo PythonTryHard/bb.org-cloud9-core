@@ -1,7 +1,7 @@
-From 9d7b39b647c89dc3d557381c1eef7f585b07b3db Mon Sep 17 00:00:00 2001
+From 73e7a39433e8a18686cbd48602f67760b3b08d89 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Fri, 5 Jun 2015 08:38:03 -0500
-Subject: [PATCH] bb.org: big revert
+Date: Mon, 8 Jun 2015 11:18:40 -0500
+Subject: [PATCH 1/4] bb.org: big revert
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
@@ -52,7 +52,7 @@ index e47c083..733570c 100644
  
      // Override Consumer's disconnect to kill the child process afterwards
 diff --git a/node_modules/vfs-local/localfs.js b/node_modules/vfs-local/localfs.js
-index 4a09ddb..9996d50 100644
+index 9d7e2f0..64bec1d 100644
 --- a/node_modules/vfs-local/localfs.js
 +++ b/node_modules/vfs-local/localfs.js
 @@ -66,23 +66,28 @@ function logToFile(message){
@@ -66,15 +66,15 @@ index 4a09ddb..9996d50 100644
 +            pty = require('pty.js');
 +        } catch(e) {
 +            e1 = e;
-+            
++
              try {
 -                pty = require(p);
 -                return true;
 -            } catch(e) {
 -                console.warn(e, p);
-+                if (os.platform() == "darwin" && os.release() == "11.4.2") 
++                if (os.platform() == "darwin" && os.release() == "11.4.2")
 +                    throw new Error("Unsupported Platform " + os.platform() + " " + os.release());
-+                    
++
 +                pty = require('pty.nw.js');
 +            } catch(e2) {
 +                console.warn("unable to initialize pty.js:");
