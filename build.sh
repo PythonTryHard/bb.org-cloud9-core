@@ -49,13 +49,13 @@ fi
 if [ ! "x${arch}" = "xarmv7l" ] ; then
 	project="nak"
 	echo ""
-	echo "Build: [npm install ${project}]"
-	npm install ${project}
+	echo "Build: [npm install ${project} --arch=armhf]"
+	npm install ${project} --arch=armhf
 
 	project="pty.js@0.2.7-1"
 	echo ""
-	echo "Build: [npm install ${project}]"
-	npm install ${project}
+	echo "Build: [npm install ${project} --arch=armhf]"
+	npm install ${project} --arch=armhf
 
 	node server.js -p 8181 -l 0.0.0.0 -a :
 else
