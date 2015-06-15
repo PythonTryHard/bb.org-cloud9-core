@@ -5,10 +5,9 @@ Subject: [PATCH 1/4] bb.org: big revert
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
- node_modules/vfs-child/parent.js  | 23 +++--------------
- node_modules/vfs-local/localfs.js | 53 ++++++++++++++++++++++-----------------
- settings/standalone.js            |  4 +--
- 3 files changed, 36 insertions(+), 44 deletions(-)
+ node_modules/vfs-child/parent.js | 23 ++++-------------------
+ settings/standalone.js           |  4 ++--
+ 2 files changed, 6 insertions(+), 21 deletions(-)
 
 diff --git a/node_modules/vfs-child/parent.js b/node_modules/vfs-child/parent.js
 index e47c083..733570c 100644
@@ -51,83 +50,6 @@ index e47c083..733570c 100644
      }
  
      // Override Consumer's disconnect to kill the child process afterwards
-diff --git a/node_modules/vfs-local/localfs.js b/node_modules/vfs-local/localfs.js
-index 5bad28f..4efd1aa 100644
---- a/node_modules/vfs-local/localfs.js
-+++ b/node_modules/vfs-local/localfs.js
-@@ -65,29 +65,29 @@ function logToFile(message){
- 
- module.exports = function setup(fsOptions) {
-     var pty;
--    if (fsOptions.nodePath) {
--        process.env.NODE_PATH = fsOptions.nodePath;
--        require("module")._initPaths();
--    }
-     if (!fsOptions.nopty) {
--        // on darwin trying to load binary for a wrong version crashes the process
--        [(fsOptions.nodePath || process.env.HOME + "/.c9/node_modules") + "/pty.js",
--            "pty.js", "pty.nw.js"].some(function(p) {
-+        var e1;
-+        try {
-+            pty = require('pty.js');
-+        } catch(e) {
-+            e1 = e;
-+
-             try {
--                pty = require(p);
--                return true;
--            } catch(e) {
--                console.warn(e, p);
-+                if (os.platform() == "darwin" && os.release() == "11.4.2")
-+                    throw new Error("Unsupported Platform " + os.platform() + " " + os.release());
-+
-+                pty = require('pty.nw.js');
-+            } catch(e2) {
-+                console.warn("unable to initialize pty.js:");
-+                console.warn(e1, e2);
-+                pty = function(){};
-             }
--        });
--        if (!pty)
--            console.warn("unable to initialize pty.js:");
-+        }
-     }
--    if (!pty) {
--        pty = function(command, options, callback) {
-+    else {
-+        pty = function(){
-             console.log("PTY is not supported.");
-         };
--        pty.spawn = pty;
-     }
- 
-     var TMUX       = fsOptions.tmuxBin || "tmux";
-@@ -2467,12 +2467,19 @@ function consumeStream(stream, callback) {
- function evaluate(code, name) {
-     var exports = {};
-     var module = { exports: exports };
--    var fn = vm.runInThisContext(
--        "(function(require, exports, module, __dirname, __filename) {"
--            + code
--            + "})"
--        , name || "dynamic-" + Date.now().toString(36));
--    fn(require, exports, module, "", "");
-+    vm.runInNewContext(code, {
-+        require: require,
-+        exports: exports,
-+        module: module,
-+        console: console,
-+        global: global,
-+        process: process,
-+        Buffer: Buffer,
-+        setTimeout: setTimeout,
-+        clearTimeout: clearTimeout,
-+        setInterval: setInterval,
-+        clearInterval: clearInterval
-+    }, name || "dynamic-" + Date.now().toString(36), true);
-     return module.exports;
- }
- 
 diff --git a/settings/standalone.js b/settings/standalone.js
 index 6be30d8..efc2358 100644
 --- a/settings/standalone.js
