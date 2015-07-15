@@ -22,7 +22,8 @@ git checkout ${git_sha} -b tmp
 git_apply="git apply"
 #git_apply="git am --whitespace=fix"
 
-${git_apply} ${DIR}/patches/0001-bb.org-big-revert.patch
+#Fixed with pty.js in /root/.c9/...
+#${git_apply} ${DIR}/patches/0001-bb.org-big-revert.patch
 
 ${git_apply} ${DIR}/patches/0002-bb.org-defaults.patch
 if [ "x${arch}" = "xarmv7l" ] ; then
