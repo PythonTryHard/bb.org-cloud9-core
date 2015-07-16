@@ -20,7 +20,7 @@ cd ${package_name}_${package_version}/
 git checkout ${git_sha} -b tmp
 
 git_apply="git apply"
-git_apply="git am --whitespace=fix"
+#git_apply="git am --whitespace=fix"
 
 ${git_apply} ${DIR}/patches/0001-bb.org-defaults.patch
 if [ "x${arch}" = "xarmv7l" ] ; then
