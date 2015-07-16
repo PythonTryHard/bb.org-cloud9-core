@@ -1,7 +1,7 @@
-From 0a3bf2597d8e3998a5accbdcb2e2839cbe24cb24 Mon Sep 17 00:00:00 2001
+From ffe87b65a879b65185774ad2e96eebbf723c336a Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 8 Jun 2015 11:21:44 -0500
-Subject: [PATCH 4/4] core: dont updateCore (we checkout a sha commit) and dont
+Subject: [PATCH 3/3] core: dont updateCore (we checkout a sha commit) and dont
  autorun
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
@@ -10,7 +10,7 @@ Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/scripts/install-sdk.sh b/scripts/install-sdk.sh
-index 99b3b0b..1e6cd4a 100755
+index 0d29603..be304d5 100755
 --- a/scripts/install-sdk.sh
 +++ b/scripts/install-sdk.sh
 @@ -155,7 +155,7 @@ NODE=node

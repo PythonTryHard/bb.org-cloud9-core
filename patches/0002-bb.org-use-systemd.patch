@@ -1,7 +1,7 @@
-From 183ce2d2e050115e92f6a0046450013c1c5c4b06 Mon Sep 17 00:00:00 2001
+From b97c35d0ca3c60fd4ff6bf12022d48a909c286ff Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 8 Jun 2015 11:20:33 -0500
-Subject: [PATCH 3/4] bb.org: use systemd
+Subject: [PATCH 2/3] bb.org: use systemd
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
@@ -66,7 +66,7 @@ index 133df8d..70c8d2a 100644
 \ No newline at end of file
 +}
 diff --git a/package.json b/package.json
-index 65bce44..13eac37 100644
+index 9af26fe..076ab49 100644
 --- a/package.json
 +++ b/package.json
 @@ -33,6 +33,7 @@
@@ -74,7 +74,7 @@ index 65bce44..13eac37 100644
          "send": "~0.1.4",
          "simple-mime": "~0.0.8",
 +        "systemd": "~0.2.6",
-         "tern": "git://github.com/lennartcl/tern.git#97464df789dbb4d81ca4579383a02b320c69563d",
+         "tern": "git://github.com/cloud9ide/tern.git#42164cde34b4cb057fa0c53d3881a58d903a3135",
          "tern_from_ts": "git://github.com/cloud9ide/tern_from_ts.git#6a0107e602b0d044fe1753533cf31f52cf5fb95a",
          "through": "2.2.0",
 -- 
