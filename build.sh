@@ -73,7 +73,7 @@ else
 		echo "Build: [npm install ${project} --arch=armhf]"
 		npm install ${project} --arch=armhf
 
-		project="pty.js@0.2.7-1"
+		project="pty.js@0.2.8"
 		echo ""
 		echo "Build: [npm install ${project} --arch=armhf]"
 		npm install ${project} --arch=armhf
