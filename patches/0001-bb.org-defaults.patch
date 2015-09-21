@@ -1,6 +1,6 @@
-From fc11d509d793bef67cb73544c0bb18eb10b4fb55 Mon Sep 17 00:00:00 2001
+From c816c691695eccdb9d821765df056b917f677bdf Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Wed, 12 Aug 2015 10:15:17 -0500
+Date: Mon, 21 Sep 2015 09:55:23 -0500
 Subject: [PATCH 1/3] bb.org defaults
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
@@ -50,5 +50,5 @@ index b36f47b..3cae991 100644
          readonly: false,
          role: "a",
 -- 
-2.5.0
+2.5.1
 

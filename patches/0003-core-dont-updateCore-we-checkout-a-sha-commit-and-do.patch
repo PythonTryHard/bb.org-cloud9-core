@@ -1,6 +1,6 @@
-From ffe87b65a879b65185774ad2e96eebbf723c336a Mon Sep 17 00:00:00 2001
+From abd4481282bcbb0751a49c0617d2afe9c940e8c1 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Mon, 8 Jun 2015 11:21:44 -0500
+Date: Mon, 21 Sep 2015 09:56:37 -0500
 Subject: [PATCH 3/3] core: dont updateCore (we checkout a sha commit) and dont
  autorun
 
@@ -10,10 +10,10 @@ Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/scripts/install-sdk.sh b/scripts/install-sdk.sh
-index 0d29603..be304d5 100755
+index 70f0eb1..4b9868b 100755
 --- a/scripts/install-sdk.sh
 +++ b/scripts/install-sdk.sh
-@@ -155,7 +155,7 @@ NODE=node
+@@ -157,7 +157,7 @@ NODE=node
  rm -rf ./build/standalone
  
  # pull the latest version
@@ -23,5 +23,5 @@ index 0d29603..be304d5 100755
  installGlobalDeps
  updateAllPackages
 -- 
-2.1.4
+2.5.1
 
