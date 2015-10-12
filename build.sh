@@ -73,36 +73,6 @@ else
 		echo "Build: [npm install ${project} --arch=armhf]"
 		npm install ${project} --arch=armhf
 
-		project="pty.js@0.2.8"
-		echo ""
-		echo "Build: [npm install ${project} --arch=armhf]"
-		npm install ${project} --arch=armhf
-
-		project="coffee"
-		echo ""
-		echo "Build: [npm install ${project} --arch=armhf]"
-		npm install ${project} --arch=armhf
-
-		project="less"
-		echo ""
-		echo "Build: [npm install ${project} --arch=armhf]"
-		npm install ${project} --arch=armhf
-
-		project="sass"
-		echo ""
-		echo "Build: [npm install ${project} --arch=armhf]"
-		npm install ${project} --arch=armhf
-
-		project="typescript"
-		echo ""
-		echo "Build: [npm install ${project} --arch=armhf]"
-		npm install ${project} --arch=armhf
-
-		project="stylus"
-		echo ""
-		echo "Build: [npm install ${project} --arch=armhf]"
-		npm install ${project} --arch=armhf
-
 		#Strip .git directories, saves over 20Mb
 		cd plugins/
 		find . -name ".git" | xargs rm -rf
