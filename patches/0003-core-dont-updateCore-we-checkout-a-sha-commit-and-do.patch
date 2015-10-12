@@ -1,4 +1,4 @@
-From abd4481282bcbb0751a49c0617d2afe9c940e8c1 Mon Sep 17 00:00:00 2001
+From b3b287b51e5f82d771479528ac3576c547f89c44 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 21 Sep 2015 09:56:37 -0500
 Subject: [PATCH 3/3] core: dont updateCore (we checkout a sha commit) and dont
@@ -23,5 +23,5 @@ index 70f0eb1..4b9868b 100755
  installGlobalDeps
  updateAllPackages
 -- 
-2.5.1
+2.6.1
 
