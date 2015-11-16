@@ -81,7 +81,11 @@ else
 		cd ../
 
 		tar -cJvf ${package_name}_${package_version}-build.tar.xz standalonebuild/
-		cp -v ${package_name}_${package_version}-build.tar.xz /mnt/farm/testing/
+		if [ -d /mnt/farm/testing/ ] ; then
+			cp -v ${package_name}_${package_version}-build.tar.xz /mnt/farm/testing/
+		else
+			cp -v ${package_name}_${package_version}-build.tar.xz /home/debian/
+		fi
 	fi
 fi
 
