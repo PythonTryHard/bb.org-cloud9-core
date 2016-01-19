@@ -28,8 +28,15 @@ pwd
 
 echo "1: patch -p1 < ${DIR}/patches/0001-bb.org-defaults.patch"
 ${git_apply} ${DIR}/patches/0001-bb.org-defaults.patch
+
 echo "2: patch -p1 < ${DIR}/patches/0002-bb.org-use-systemd.patch"
-${git_apply} ${DIR}/patches/0002-bb.org-use-systemd.patch
+if [ ! "x${arch}" = "xarmv7l" ] ; then
+	patch -p1 < ${DIR}/patches/0002-bb.org-use-systemd.patch
+	git commit -a -m 'bb.org: use systemd' -s
+else
+	${git_apply} ${DIR}/patches/0002-bb.org-use-systemd.patch
+fi
+
 echo "3: patch -p1 < ${DIR}/patches/0003-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch"
 ${git_apply} ${DIR}/patches/0003-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch
 
