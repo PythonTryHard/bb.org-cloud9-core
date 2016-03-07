@@ -1,4 +1,4 @@
-From 92f3bc2d1afe60cbb1b4f094d2cc9c55e6d9acad Mon Sep 17 00:00:00 2001
+From 3be3f2b2253b8b62e7519f5ecd664d32b706d942 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 21 Sep 2015 09:56:37 -0500
 Subject: [PATCH 3/3] core: dont updateCore (we checkout a sha commit) and dont
