@@ -1,6 +1,6 @@
-From 8858bab7cacef35f73674c394a1a515d47ac9a86 Mon Sep 17 00:00:00 2001
+From e576056b24481009bc33b7b68044cb49fc8403a3 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Mon, 7 Mar 2016 09:45:47 -0600
+Date: Mon, 2 May 2016 11:23:50 -0500
 Subject: [PATCH 2/3] bb.org: use systemd
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
@@ -35,7 +35,7 @@ index 963ba9c..5b4d64e 100644
 \ No newline at end of file
 +}
 diff --git a/node_modules/connect-architect/connect/connect-plugin.js b/node_modules/connect-architect/connect/connect-plugin.js
-index 133df8d..70c8d2a 100644
+index 019ac14..1782ce8 100644
 --- a/node_modules/connect-architect/connect/connect-plugin.js
 +++ b/node_modules/connect-architect/connect/connect-plugin.js
 @@ -3,6 +3,7 @@ var netutil = require("netutil");
@@ -66,7 +66,7 @@ index 133df8d..70c8d2a 100644
 \ No newline at end of file
 +}
 diff --git a/package.json b/package.json
-index 901c8b8..9313ef6 100644
+index 44235ed..458c9e4 100644
 --- a/package.json
 +++ b/package.json
 @@ -33,6 +33,7 @@
@@ -77,13 +77,13 @@ index 901c8b8..9313ef6 100644
          "tern": "git://github.com/cloud9ide/tern.git#39015d544d4c00c7899fea4c95c2e5bc2720e68e",
          "tern_from_ts": "git://github.com/cloud9ide/tern_from_ts.git#84d51dcb9b16b126a206789d4d4237cde2801fe4",
          "through": "2.2.0",
-@@ -119,4 +120,4 @@
-         "c9.ide.upload": "#0bd010d3dc",
-         "c9.ide.welcome": "#5b86c44e92"
+@@ -123,4 +124,4 @@
+         "c9.ide.welcome": "#5b86c44e92",
+         "c9.ide.guide": "#df7c89e449"
      }
 -}
 \ No newline at end of file
 +}
 -- 
-2.7.0
+2.8.1
 

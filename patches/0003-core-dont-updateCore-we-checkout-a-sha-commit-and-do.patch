@@ -1,4 +1,4 @@
-From 3be3f2b2253b8b62e7519f5ecd664d32b706d942 Mon Sep 17 00:00:00 2001
+From 233be42658c694b0b7f543c1ab2b7874dccdac71 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 21 Sep 2015 09:56:37 -0500
 Subject: [PATCH 3/3] core: dont updateCore (we checkout a sha commit) and dont
@@ -10,7 +10,7 @@ Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/scripts/install-sdk.sh b/scripts/install-sdk.sh
-index 38448df..a7fc0cc 100755
+index a953cad..8cc1fdc 100755
 --- a/scripts/install-sdk.sh
 +++ b/scripts/install-sdk.sh
 @@ -158,7 +158,7 @@ NODE=node
@@ -23,5 +23,5 @@ index 38448df..a7fc0cc 100755
  installGlobalDeps
  updateAllPackages
 -- 
-2.7.0
+2.8.1
 
