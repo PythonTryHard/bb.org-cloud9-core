@@ -98,7 +98,8 @@ else
 		if [ -d /mnt/farm/testing/ ] ; then
 			cp -v ${package_name}_${package_version}-build.tar.xz /mnt/farm/testing/
 		else
-			cp -v ${package_name}_${package_version}-build.tar.xz /home/debian/
+			mkdir /home/debian/`nodejs --version`/
+			cp -v ${package_name}_${package_version}-build.tar.xz /home/debian/`nodejs --version`/
 		fi
 	fi
 fi
