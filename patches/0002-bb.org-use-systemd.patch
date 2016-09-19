@@ -1,6 +1,6 @@
-From e576056b24481009bc33b7b68044cb49fc8403a3 Mon Sep 17 00:00:00 2001
+From 16f0cb30170b15d0918383f0115c551586a7db02 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Mon, 2 May 2016 11:23:50 -0500
+Date: Mon, 19 Sep 2016 14:36:21 -0500
 Subject: [PATCH 2/3] bb.org: use systemd
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
@@ -66,24 +66,24 @@ index 019ac14..1782ce8 100644
 \ No newline at end of file
 +}
 diff --git a/package.json b/package.json
-index 44235ed..458c9e4 100644
+index 96c1313..ea1277b 100644
 --- a/package.json
 +++ b/package.json
-@@ -33,6 +33,7 @@
-         "rusha": "~0.7.2",
+@@ -32,6 +32,7 @@
+         "rusha": "^0.8.3",
          "send": "~0.1.4",
          "simple-mime": "~0.0.8",
 +        "systemd": "~0.2.6",
-         "tern": "git://github.com/cloud9ide/tern.git#39015d544d4c00c7899fea4c95c2e5bc2720e68e",
-         "tern_from_ts": "git://github.com/cloud9ide/tern_from_ts.git#84d51dcb9b16b126a206789d4d4237cde2801fe4",
+         "tern": "git+https://github.com/cloud9ide/tern.git#39015d544d4c00c7899fea4c95c2e5bc2720e68e",
+         "tern_from_ts": "git+https://github.com/cloud9ide/tern_from_ts.git#84d51dcb9b16b126a206789d4d4237cde2801fe4",
          "through": "2.2.0",
 @@ -123,4 +124,4 @@
-         "c9.ide.welcome": "#5b86c44e92",
-         "c9.ide.guide": "#df7c89e449"
+         "c9.ide.welcome": "#7b75aefc28",
+         "c9.ide.guide": "#19f6087429"
      }
 -}
 \ No newline at end of file
 +}
 -- 
-2.8.1
+2.9.3
 
