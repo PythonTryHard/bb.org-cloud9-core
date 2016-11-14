@@ -43,7 +43,7 @@ else
 	${git_apply} ${DIR}/patches/${wfile}
 fi
 
-wfile="0004-bb.org-defaults.patch"
+wfile="0004-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch"
 echo "4: patch -p1 < ${DIR}/patches/${wfile}"
 ${git_apply} ${DIR}/patches/${wfile}
 
