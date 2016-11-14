@@ -1,6 +1,6 @@
-From 74ac1dade0d41b76a5f35d5e9636250ff018ffcc Mon Sep 17 00:00:00 2001
+From ee740c60a7dd12f182920c12013d2fa444de1e84 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Mon, 14 Nov 2016 14:44:43 -0600
+Date: Mon, 14 Nov 2016 14:56:55 -0600
 Subject: [PATCH 2/3] bb.org: use systemd
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
@@ -66,7 +66,7 @@ index 019ac14..1782ce8 100644
 \ No newline at end of file
 +}
 diff --git a/package.json b/package.json
-index ee29dc5..4a74878 100644
+index 7d6ebfc..61a915b 100644
 --- a/package.json
 +++ b/package.json
 @@ -32,6 +32,7 @@
