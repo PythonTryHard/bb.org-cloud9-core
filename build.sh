@@ -26,22 +26,29 @@ fi
 
 pwd
 
-echo "1: patch -p1 < ${DIR}/patches/0001-bb.org-defaults.patch"
-${git_apply} ${DIR}/patches/0001-bb.org-defaults.patch
+wfile="0001-Revert-git.js-doesn-t-need-amd-loader-and-it-s-causi.patch"
+echo "1: patch -p1 < ${DIR}/patches/${wfile}"
+${git_apply} ${DIR}/patches/${wfile}
 
-echo "2: patch -p1 < ${DIR}/patches/0002-bb.org-use-systemd.patch"
+wfile="0002-bb.org-defaults.patch"
+echo "2: patch -p1 < ${DIR}/patches/${wfile}"
+${git_apply} ${DIR}/patches/${wfile}
+
+wfile="0003-bb.org-use-systemd.patch"
+echo "3: patch -p1 < ${DIR}/patches/${wfile}"
 if [ ! "x${arch}" = "xarmv7l" ] ; then
-	patch -p1 < ${DIR}/patches/0002-bb.org-use-systemd.patch
+	patch -p1 < ${DIR}/patches/${wfile}
 	git commit -a -m 'bb.org: use systemd' -s
 else
-	${git_apply} ${DIR}/patches/0002-bb.org-use-systemd.patch
+	${git_apply} ${DIR}/patches/${wfile}
 fi
 
-echo "3: patch -p1 < ${DIR}/patches/0003-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch"
-${git_apply} ${DIR}/patches/0003-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch
+wfile="0004-bb.org-defaults.patch"
+echo "4: patch -p1 < ${DIR}/patches/${wfile}"
+${git_apply} ${DIR}/patches/${wfile}
 
 if [ ! "x${arch}" = "xarmv7l" ] ; then
-	git format-patch -3 -o ${DIR}/patches/
+	git format-patch -4 -o ${DIR}/patches/
 	exit
 fi
 

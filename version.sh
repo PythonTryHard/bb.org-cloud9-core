@@ -9,7 +9,7 @@ package_source="${package_name}_${package_version}.orig.tar.xz"
 src_dir="${package_name}_${package_version}"
 
 git_repo="https://github.com/c9/core.git"
-git_sha="5d7d4e3b3dab1d781a2b171cf2e75e75b02d483f"
+git_sha="32fc12bf922288d0c2b518c73aa75e19f14bed8b"
 reprepro_dir="c/${package_name}"
 dl_path=""
 
