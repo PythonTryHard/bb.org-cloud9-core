@@ -4,12 +4,12 @@
 
 package_name="c9-core"
 debian_pkg_name="${package_name}"
-package_version="3.1.3168+git20161016"
+package_version="3.1.3306+git20161130"
 package_source="${package_name}_${package_version}.orig.tar.xz"
 src_dir="${package_name}_${package_version}"
 
 git_repo="https://github.com/c9/core.git"
-git_sha="32fc12bf922288d0c2b518c73aa75e19f14bed8b"
+git_sha="1a376d399793549fac39a8f04000445956c03c5c"
 reprepro_dir="c/${package_name}"
 dl_path=""
 
