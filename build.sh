@@ -101,12 +101,14 @@ else
 
 		cd ../
 
-		tar -cJvf ${package_name}_${package_version}-build.tar.xz standalonebuild/
+		nodejs_version=$(nodejs --version)
+
+		tar -cJvf ${package_name}_${package_version}-${nodejs_version}-build.tar.xz standalonebuild/
 		if [ -d /mnt/farm/testing/ ] ; then
-			cp -v ${package_name}_${package_version}-build.tar.xz /mnt/farm/testing/
+			cp -v ${package_name}_${package_version}-${nodejs_version}-build.tar.xz /mnt/farm/testing/
 		else
-			mkdir -p /home/debian/`nodejs --version`/ || true
-			cp -v ${package_name}_${package_version}-build.tar.xz /home/debian/`nodejs --version`/
+			mkdir -p /home/debian/${nodejs_version}/ || true
+			cp -v ${package_name}_${package_version}-${nodejs_version}-build.tar.xz /home/debian/${nodejs_version}/
 		fi
 	fi
 fi
