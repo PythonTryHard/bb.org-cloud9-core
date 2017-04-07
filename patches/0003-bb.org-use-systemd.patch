@@ -1,6 +1,6 @@
-From fb03d7502f1c3f5b4f8a4e2a1d2d4131a06808d9 Mon Sep 17 00:00:00 2001
+From 5c843d0f55b7979f431109c36cfee90c766382fc Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Wed, 7 Dec 2016 09:28:11 -0600
+Date: Fri, 7 Apr 2017 13:00:26 -0500
 Subject: [PATCH 3/4] bb.org: use systemd
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
@@ -11,7 +11,7 @@ Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
  3 files changed, 11 insertions(+), 14 deletions(-)
 
 diff --git a/node_modules/connect-architect/connect.remote-address/remote-address.js b/node_modules/connect-architect/connect.remote-address/remote-address.js
-index 963ba9c..5b4d64e 100644
+index 963ba9cf..5b4d64ef 100644
 --- a/node_modules/connect-architect/connect.remote-address/remote-address.js
 +++ b/node_modules/connect-architect/connect.remote-address/remote-address.js
 @@ -8,15 +8,7 @@ module.exports = function(options, imports, register) {
@@ -35,7 +35,7 @@ index 963ba9c..5b4d64e 100644
 \ No newline at end of file
 +}
 diff --git a/node_modules/connect-architect/connect/connect-plugin.js b/node_modules/connect-architect/connect/connect-plugin.js
-index 019ac14..1782ce8 100644
+index 019ac14f..1782ce8f 100644
 --- a/node_modules/connect-architect/connect/connect-plugin.js
 +++ b/node_modules/connect-architect/connect/connect-plugin.js
 @@ -3,6 +3,7 @@ var netutil = require("netutil");
@@ -66,7 +66,7 @@ index 019ac14..1782ce8 100644
 \ No newline at end of file
 +}
 diff --git a/package.json b/package.json
-index e8655c3..b19120b 100644
+index 5ceae7d8..46356f91 100644
 --- a/package.json
 +++ b/package.json
 @@ -32,6 +32,7 @@
@@ -77,13 +77,13 @@ index e8655c3..b19120b 100644
          "tern": "git+https://github.com/cloud9ide/tern.git#39015d544d4c00c7899fea4c95c2e5bc2720e68e",
          "tern_from_ts": "git+https://github.com/cloud9ide/tern_from_ts.git#84d51dcb9b16b126a206789d4d4237cde2801fe4",
          "through": "2.2.0",
-@@ -123,4 +124,4 @@
-         "c9.ide.welcome": "#cffeaa9d16",
-         "c9.ide.guide": "#19f6087429"
-     }
+@@ -57,4 +58,4 @@
+         "msgpack-js",
+         "c9"
+     ]
 -}
 \ No newline at end of file
 +}
 -- 
-2.10.2
+2.11.0
 

@@ -1,4 +1,4 @@
-From d4502d50f908e618e5cf03765886348cbfeb406d Mon Sep 17 00:00:00 2001
+From a4f4251c1443d4922da5e35b3ef6f7a9a0f8a083 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 21 Sep 2015 09:55:23 -0500
 Subject: [PATCH 2/4] bb.org defaults
@@ -9,10 +9,10 @@ Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
  1 file changed, 8 insertions(+), 4 deletions(-)
 
 diff --git a/settings/standalone.js b/settings/standalone.js
-index 39d7a1c..3005977 100644
+index 61d92268..967deaca 100644
 --- a/settings/standalone.js
 +++ b/settings/standalone.js
-@@ -32,7 +32,8 @@ module.exports = function(manifest, installPath) {
+@@ -39,7 +39,8 @@ module.exports = function(manifest, installPath) {
          standalone: true,
          startBridge: true,
          manifest: manifest,
@@ -22,7 +22,7 @@ index 39d7a1c..3005977 100644
          projectName: path.basename(workspaceDir),
          homeDir: home,
          workspaceId: "devel",
-@@ -43,12 +44,14 @@ module.exports = function(manifest, installPath) {
+@@ -50,12 +51,14 @@ module.exports = function(manifest, installPath) {
          dev: true,
          sdk: sdk,
          pid: process.pid,
@@ -39,7 +39,7 @@ index 39d7a1c..3005977 100644
          nakBin: path.join(__dirname, "../node_modules/nak/bin/nak"),
          bashBin: "bash",
          nodeBin: [path.join(installPath, win32 ? "node.exe" : "node/bin/node"), process.execPath],
-@@ -64,7 +67,8 @@ module.exports = function(manifest, installPath) {
+@@ -71,7 +74,8 @@ module.exports = function(manifest, installPath) {
          homeUrl: "/home",
          collab: false,
          installed: true,
@@ -50,5 +50,5 @@ index 39d7a1c..3005977 100644
          readonly: false,
          role: "a",
 -- 
-2.10.2
+2.11.0
 

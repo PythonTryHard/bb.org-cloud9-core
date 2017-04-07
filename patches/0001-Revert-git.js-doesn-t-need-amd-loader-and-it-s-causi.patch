@@ -1,4 +1,4 @@
-From 50ed379e116a8f8b953575c2c9a4d93bbc2b1c26 Mon Sep 17 00:00:00 2001
+From fe11ad0b4175fd3c584a3145fc46d99e0c696fda Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 14 Nov 2016 15:21:07 -0600
 Subject: [PATCH 1/4] Revert "git.js doesn't need amd-loader and it's causing a
@@ -12,7 +12,7 @@ Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/node_modules/c9/git.js b/node_modules/c9/git.js
-index 6228914..dea0228 100644
+index 6228914a..dea02285 100644
 --- a/node_modules/c9/git.js
 +++ b/node_modules/c9/git.js
 @@ -1,5 +1,7 @@
@@ -24,5 +24,5 @@ index 6228914..dea0228 100644
  var Path = require("path");
  var exec = require("child_process").exec;
 -- 
-2.10.2
+2.11.0
 
