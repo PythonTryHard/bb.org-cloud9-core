@@ -84,16 +84,15 @@ else
 	if [ -d standalonebuild ] ; then
 
 		cd ./standalonebuild/
-#		npm install --arch=armhf
-#		npm install systemd --arch=armhf
-#		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc --arch=armhf
+		npm install systemd --arch=armhf
+		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc --arch=armhf
 
 #		#https://github.com/c9/install/blob/master/install.sh
 
-#		project="nak"
-#		echo ""
-#		echo "Build: [npm install ${project} --arch=armhf]"
-#		npm install ${project} --arch=armhf
+		project="nak"
+		echo ""
+		echo "Build: [npm install ${project} --arch=armhf]"
+		npm install ${project} --arch=armhf
 
 		#Strip .git directories, saves over 20Mb
 		cd plugins/

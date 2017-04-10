@@ -17,8 +17,8 @@ index 61d92268..141d4e1f 100644
          readWin32Settings();
      
 -    var home = process.env.HOME;
-+    //var home = process.env.HOME;
-+    var home = "/opt/cloud9/";
++    var home =  process.env.HOME;
++    //var home = "/opt/cloud9/";
      assert(home, "home directory must be set");
      
      if (!installPath)
@@ -48,7 +48,7 @@ index 61d92268..141d4e1f 100644
 +        //tmux: path.join(installPath, "bin/tmux"),
 +        tmux: "/usr/bin/tmux",
 +        //nakBin: path.join(__dirname, "../node_modules/nak/bin/nak"),
-+        nakBin: "/usr/local/lib/node_modules/nak/bin/nak",
++        nakBin: "/opt/cloud9/build/standalonebuild/node_modules/nak/bin/nak",
          bashBin: "bash",
 -        nodeBin: [path.join(installPath, win32 ? "node.exe" : "node/bin/node"), process.execPath],
 +        //nodeBin: [path.join(installPath, win32 ? "node.exe" : "node/bin/node"), process.execPath],
