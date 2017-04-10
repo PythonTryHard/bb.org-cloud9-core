@@ -84,7 +84,7 @@ else
 	if [ -d standalonebuild ] ; then
 
 		cd ./standalonebuild/
-		npm install --arch=armhf
+#		npm install --arch=armhf
 #		npm install systemd --arch=armhf
 #		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc --arch=armhf
 
