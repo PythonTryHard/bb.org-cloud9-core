@@ -1,18 +1,28 @@
-From a4f4251c1443d4922da5e35b3ef6f7a9a0f8a083 Mon Sep 17 00:00:00 2001
+From 48d33be6be92e25f31e29cf8094cb43990c49eb3 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 21 Sep 2015 09:55:23 -0500
 Subject: [PATCH 2/4] bb.org defaults
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
- settings/standalone.js | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ settings/standalone.js | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
 
 diff --git a/settings/standalone.js b/settings/standalone.js
-index 61d92268..967deaca 100644
+index 61d92268..141d4e1f 100644
 --- a/settings/standalone.js
 +++ b/settings/standalone.js
-@@ -39,7 +39,8 @@ module.exports = function(manifest, installPath) {
+@@ -24,7 +24,8 @@ module.exports = function(manifest, installPath) {
+     if (win32)
+         readWin32Settings();
+     
+-    var home = process.env.HOME;
++    //var home = process.env.HOME;
++    var home = "/opt/cloud9/";
+     assert(home, "home directory must be set");
+     
+     if (!installPath)
+@@ -39,7 +40,8 @@ module.exports = function(manifest, installPath) {
          standalone: true,
          startBridge: true,
          manifest: manifest,
@@ -22,7 +32,7 @@ index 61d92268..967deaca 100644
          projectName: path.basename(workspaceDir),
          homeDir: home,
          workspaceId: "devel",
-@@ -50,12 +51,14 @@ module.exports = function(manifest, installPath) {
+@@ -50,15 +52,19 @@ module.exports = function(manifest, installPath) {
          dev: true,
          sdk: sdk,
          pid: process.pid,
@@ -34,12 +44,19 @@ index 61d92268..967deaca 100644
          platform: process.platform,
          arch: process.arch,
 -        tmux: path.join(installPath, "bin/tmux"),
+-        nakBin: path.join(__dirname, "../node_modules/nak/bin/nak"),
 +        //tmux: path.join(installPath, "bin/tmux"),
 +        tmux: "/usr/bin/tmux",
-         nakBin: path.join(__dirname, "../node_modules/nak/bin/nak"),
++        //nakBin: path.join(__dirname, "../node_modules/nak/bin/nak"),
++        nakBin: "/usr/local/lib/node_modules/nak/bin/nak",
          bashBin: "bash",
-         nodeBin: [path.join(installPath, win32 ? "node.exe" : "node/bin/node"), process.execPath],
-@@ -71,7 +74,8 @@ module.exports = function(manifest, installPath) {
+-        nodeBin: [path.join(installPath, win32 ? "node.exe" : "node/bin/node"), process.execPath],
++        //nodeBin: [path.join(installPath, win32 ? "node.exe" : "node/bin/node"), process.execPath],
++        nodeBin: "/usr/bin/nodejs",
+         installPath: installPath,
+         correctedInstallPath: correctedInstallPath,
+         staticPrefix: "/static",
+@@ -71,7 +77,8 @@ module.exports = function(manifest, installPath) {
          homeUrl: "/home",
          collab: false,
          installed: true,

@@ -13,7 +13,7 @@ if [ ! -d ${DIR}/git/ ] ; then
 	git clone ${git_repo} ${DIR}/git/
 fi
 
-git clone --reference ${DIR}/git/ ${git_repo} ${package_name}_${package_version}
+git clone --reference ${DIR}/git/ ${git_repo} ${package_name}_${package_version} --depth=1
 
 cd ${package_name}_${package_version}/
 
@@ -84,15 +84,16 @@ else
 	if [ -d standalonebuild ] ; then
 
 		cd ./standalonebuild/
-		npm install systemd --arch=armhf
-		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc --arch=armhf
+		npm install --arch=armhf
+#		npm install systemd --arch=armhf
+#		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc --arch=armhf
 
-		#https://github.com/c9/install/blob/master/install.sh
+#		#https://github.com/c9/install/blob/master/install.sh
 
-		project="nak"
-		echo ""
-		echo "Build: [npm install ${project} --arch=armhf]"
-		npm install ${project} --arch=armhf
+#		project="nak"
+#		echo ""
+#		echo "Build: [npm install ${project} --arch=armhf]"
+#		npm install ${project} --arch=armhf
 
 		#Strip .git directories, saves over 20Mb
 		cd plugins/
