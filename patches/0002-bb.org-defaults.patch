@@ -1,7 +1,7 @@
-From 20c6f11aa02fe29122b000d2c5347bd207e66c6b Mon Sep 17 00:00:00 2001
+From 0a057c3e0fe498fc8f87ba759f82722d74a700fc Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 21 Sep 2015 09:55:23 -0500
-Subject: [PATCH 2/4] bb.org defaults
+Subject: [PATCH 2/5] bb.org defaults
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---

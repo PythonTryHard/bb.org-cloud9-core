@@ -1,7 +1,7 @@
-From 5edf3d3272d95ebaeb072e2f3582d93481f5412a Mon Sep 17 00:00:00 2001
+From 1339f43a6e80effaf8ac26c1910e88185b7a03df Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Fri, 7 Apr 2017 12:59:55 -0500
-Subject: [PATCH 4/4] core: dont updateCore (we checkout a sha commit) and dont
+Subject: [PATCH 4/5] core: dont updateCore (we checkout a sha commit) and dont
  autorun
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>

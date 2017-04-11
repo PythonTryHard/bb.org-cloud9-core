@@ -1,0 +1,42 @@
+From 47f72de5bde59c65dbc4f4251823f9153d164ff6 Mon Sep 17 00:00:00 2001
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Tue, 11 Apr 2017 16:15:38 -0500
+Subject: [PATCH 5/5] c9-installed-use-normal-dir
+
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+---
+ plugins/c9.ide.installer/installer.js | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/plugins/c9.ide.installer/installer.js b/plugins/c9.ide.installer/installer.js
+index fc45f26c..cae8a6b8 100644
+--- a/plugins/c9.ide.installer/installer.js
++++ b/plugins/c9.ide.installer/installer.js
+@@ -68,7 +68,7 @@ define(function(require, exports, module) {
+         /***** Methods *****/
+         
+         function simpleInstallRead() {
+-            var path = options.installPath.replace(c9.home, "~") + "/installed";
++            var path = "/opt/cloud9/.c9/installed";
+             fs.readFile(path, function(err, data) {
+                 if (err) {
+                     if (err.code == "ENOENT")
+@@ -136,7 +136,7 @@ define(function(require, exports, module) {
+                 emit.sticky("ready", installed);
+             }
+             
+-            vfs.readfile(options.installPath.replace(c9.home, "~") + "/installed", {
++            vfs.readfile("/opt/cloud9/.c9/installed", {
+                 encoding: "utf8"
+             }, function(err, meta) {
+                 if (err) {
+@@ -558,4 +558,4 @@ define(function(require, exports, module) {
+             installer: plugin
+         });
+     }
+-});
+\ No newline at end of file
++});
+-- 
+2.11.0
+
