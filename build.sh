@@ -89,15 +89,15 @@ else
 
 #		#https://github.com/c9/install/blob/master/install.sh
 
-#		project="nak"
-#		echo ""
-#		echo "Build: [npm install ${project} --arch=armhf]"
-#		npm install ${project} --arch=armhf
+		project="nak"
+		echo ""
+		echo "Build: [npm install ${project} --arch=armhf]"
+		npm install ${project} --arch=armhf
 
-#		project="pty.js"
-#		echo ""
-#		echo "Build: [npm install ${project} --arch=armhf]"
-#		npm install ${project} --arch=armhf
+		project="pty.js"
+		echo ""
+		echo "Build: [npm install ${project} --arch=armhf]"
+		npm install ${project} --arch=armhf
 
 		#Strip .git directories, saves over 20Mb
 		cd plugins/
