@@ -48,7 +48,7 @@ echo "4: patch -p1 < ${DIR}/patches/${wfile}"
 ${git_apply} ${DIR}/patches/${wfile}
 
 if [ ! "x${arch}" = "xarmv7l" ] ; then
-	git format-patch -4 -o ${DIR}/patches/
+	git format-patch -3 -o ${DIR}/patches/
 	exit
 fi
 
@@ -84,15 +84,20 @@ else
 	if [ -d standalonebuild ] ; then
 
 		cd ./standalonebuild/
-		npm install systemd --arch=armhf
-		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc --arch=armhf
+#		npm install systemd --arch=armhf
+#		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc --arch=armhf
 
 #		#https://github.com/c9/install/blob/master/install.sh
 
-		project="nak"
-		echo ""
-		echo "Build: [npm install ${project} --arch=armhf]"
-		npm install ${project} --arch=armhf
+#		project="nak"
+#		echo ""
+#		echo "Build: [npm install ${project} --arch=armhf]"
+#		npm install ${project} --arch=armhf
+
+#		project="pty.js"
+#		echo ""
+#		echo "Build: [npm install ${project} --arch=armhf]"
+#		npm install ${project} --arch=armhf
 
 		#Strip .git directories, saves over 20Mb
 		cd plugins/
