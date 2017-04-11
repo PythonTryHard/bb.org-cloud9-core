@@ -1,0 +1,26 @@
+From 4b6bc052a111e9d1d32bfcb4c48eee79007558ca Mon Sep 17 00:00:00 2001
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Tue, 11 Apr 2017 16:46:25 -0500
+Subject: [PATCH 5/5] use local pty.js
+
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+---
+ node_modules/vfs-local/localfs.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/node_modules/vfs-local/localfs.js b/node_modules/vfs-local/localfs.js
+index 5f5599a6..dae85e60 100644
+--- a/node_modules/vfs-local/localfs.js
++++ b/node_modules/vfs-local/localfs.js
+@@ -79,7 +79,7 @@ module.exports = function setup(fsOptions) {
+     }
+     if (!fsOptions.nopty) {
+         // on darwin trying to load binary for a wrong version crashes the process
+-        [(fsOptions.nodePath || "/opt/cloud9/.c9/node_modules") + "/pty.js",
++        [(fsOptions.nodePath || "/opt/cloud9/build/standalonebuild/node_modules") + "/pty.js",
+             "pty.js", "pty.nw.js"].some(function(p) {
+             try {
+                 pty = require(p);
+-- 
+2.11.0
+

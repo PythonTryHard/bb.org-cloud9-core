@@ -54,8 +54,12 @@ wfile="0004-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch"
 echo "4: patch -p1 < ${DIR}/patches/${wfile}"
 ${git_apply} ${DIR}/patches/${wfile}
 
+wfile="0005-use-local-pty.js.patch"
+echo "5: patch -p1 < ${DIR}/patches/${wfile}"
+${git_apply} ${DIR}/patches/${wfile}
+
 if [ ! "x${arch}" = "xarmv7l" ] ; then
-	git format-patch -4 -o ${DIR}/patches/
+	git format-patch -5 -o ${DIR}/patches/
 	exit
 fi
 
