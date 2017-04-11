@@ -13,9 +13,16 @@ if [ ! -d ${DIR}/git/ ] ; then
 	git clone ${git_repo} ${DIR}/git/
 fi
 
-git clone --reference ${DIR}/git/ ${git_repo} ${package_name}_${package_version} --depth=1
+if [ -d /opt/cloud9 ] ; then
+	sudo rm -rf /opt/cloud9/
+fi
 
-cd ${package_name}_${package_version}/
+sudo mkdir -p /opt/cloud9 || true
+sudo chown -R 1000:1000 /opt/cloud9
+
+git clone --reference ${DIR}/git/ ${git_repo} /opt/cloud9/
+
+cd /opt/cloud9/
 
 git checkout ${git_sha} -b tmp
 
