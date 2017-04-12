@@ -5,6 +5,8 @@ arch=$(uname -m)
 
 DIR="$PWD"
 
+distro=$(lsb_release -cs)
+
 if [ -d ${DIR}/${package_name}_${package_version} ] ; then
 	rm -rf ${DIR}/${package_name}_${package_version} || true
 fi
@@ -116,11 +118,10 @@ else
 		nodejs_version=$(nodejs --version)
 
 		tar -cJvf ${package_name}_${package_version}-${nodejs_version}-build.tar.xz standalonebuild/
-		if [ -d /mnt/farm/testing/ ] ; then
-			cp -v ${package_name}_${package_version}-${nodejs_version}-build.tar.xz /mnt/farm/testing/
-		else
-			mkdir -p /home/debian/${nodejs_version}/ || true
-			cp -v ${package_name}_${package_version}-${nodejs_version}-build.tar.xz /home/debian/${nodejs_version}/
+
+		if [ ! -f ./deploy/${distro}/${package_name}_${package_version}-${nodejs_version}-build.tar.xz ] ; then
+			cp -v ${prefix}/${package_name}_${package_version}-${nodejs_version}-build.tar.xz ./deploy/${distro}/
+			echo "New Build: ${package_name}_${package_version}-${nodejs_version}-build.tar.xz"
 		fi
 	fi
 fi
