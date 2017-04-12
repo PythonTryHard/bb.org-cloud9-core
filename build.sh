@@ -10,6 +10,10 @@ distro=$(lsb_release -cs)
 git config --global user.name "Robert Nelson"
 git config --global user.email robertcnelson@gmail.com
 
+echo "stop: cloud9*"
+sudo systemctl stop cloud9.service || true
+sudo systemctl stop cloud9.socket || true
+
 if [ -d ${DIR}/${package_name}_${package_version} ] ; then
 	rm -rf ${DIR}/${package_name}_${package_version} || true
 fi
