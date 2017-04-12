@@ -120,7 +120,7 @@ else
 		tar -cJvf ${package_name}_${package_version}-${nodejs_version}-build.tar.xz standalonebuild/
 
 		if [ ! -f ./deploy/${distro}/${package_name}_${package_version}-${nodejs_version}-build.tar.xz ] ; then
-			cp -v ${prefix}/${package_name}_${package_version}-${nodejs_version}-build.tar.xz ./deploy/${distro}/
+			cp -v ${package_name}_${package_version}-${nodejs_version}-build.tar.xz ./deploy/${distro}/
 			echo "New Build: ${package_name}_${package_version}-${nodejs_version}-build.tar.xz"
 		fi
 	fi
