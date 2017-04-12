@@ -1,7 +1,7 @@
-From 1193f9ade62fa9ad65163bca3d114226567082cd Mon Sep 17 00:00:00 2001
+From 2c878cc155ba2c87b92ed2b36dc9be8789ad51d0 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 21 Sep 2015 09:55:23 -0500
-Subject: [PATCH 2/5] bb.org defaults
+Subject: [PATCH 2/4] bb.org defaults
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
@@ -10,7 +10,7 @@ Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
  2 files changed, 12 insertions(+), 7 deletions(-)
 
 diff --git a/node_modules/vfs-local/localfs.js b/node_modules/vfs-local/localfs.js
-index bab71109..5f5599a6 100644
+index bab71109..dae85e60 100644
 --- a/node_modules/vfs-local/localfs.js
 +++ b/node_modules/vfs-local/localfs.js
 @@ -79,7 +79,7 @@ module.exports = function setup(fsOptions) {
@@ -18,7 +18,7 @@ index bab71109..5f5599a6 100644
      if (!fsOptions.nopty) {
          // on darwin trying to load binary for a wrong version crashes the process
 -        [(fsOptions.nodePath || process.env.HOME + "/.c9/node_modules") + "/pty.js",
-+        [(fsOptions.nodePath || "/opt/cloud9/.c9/node_modules") + "/pty.js",
++        [(fsOptions.nodePath || "/opt/cloud9/build/standalonebuild/node_modules") + "/pty.js",
              "pty.js", "pty.nw.js"].some(function(p) {
              try {
                  pty = require(p);
