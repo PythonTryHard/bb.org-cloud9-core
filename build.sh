@@ -7,6 +7,9 @@ DIR="$PWD"
 
 distro=$(lsb_release -cs)
 
+git config --global user.name "Robert Nelson"
+git config --global user.email robertcnelson@gmail.com
+
 if [ -d ${DIR}/${package_name}_${package_version} ] ; then
 	rm -rf ${DIR}/${package_name}_${package_version} || true
 fi
@@ -120,7 +123,7 @@ else
 		tar -cJvf ${package_name}_${package_version}-${nodejs_version}-build.tar.xz standalonebuild/
 
 		if [ ! -f ./deploy/${distro}/${package_name}_${package_version}-${nodejs_version}-build.tar.xz ] ; then
-			cp -v ${package_name}_${package_version}-${nodejs_version}-build.tar.xz ./deploy/${distro}/
+			cp -v /opt/cloud9/build/${package_name}_${package_version}-${nodejs_version}-build.tar.xz ${DIR}/deploy/${distro}/
 			echo "New Build: ${package_name}_${package_version}-${nodejs_version}-build.tar.xz"
 		fi
 	fi
