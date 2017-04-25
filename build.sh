@@ -65,7 +65,7 @@ ${git_apply} ${DIR}/patches/${wfile}
 
 if [ ! "x${arch}" = "xarmv7l" ] ; then
 	git format-patch -4 -o ${DIR}/patches/
-	exit
+#	exit
 fi
 
 mkdir -p ~/.c9/
@@ -75,28 +75,66 @@ echo ""
 echo "build: [./scripts/install-sdk.sh]"
 ./scripts/install-sdk.sh
 
+echo ""
 if [ "x${arch}" = "xarmv7l" ] ; then
-	echo ""
 	echo "build: [npm install --arch=armhf]"
 	npm install --arch=armhf
+else
+	echo "build: [npm install]"
+	npm install
 fi
 
+rm -Rf build/standalone
+sync
+sync
+
+echo ""
+echo "build: [./scripts/makestandalone.sh --compress]"
+./scripts/makestandalone.sh --compress
+
+echo ""
+echo "build: [./build/build-standalone.sh]"
+./build/build-standalone.sh
+
+cd ./build/
+
 if [ ! "x${arch}" = "xarmv7l" ] ; then
-	node server.js -p 8181 -l 0.0.0.0 -a :
+	if [ -d standalonebuild ] ; then
+
+		cd ./standalonebuild/
+
+		npm install systemd
+		npm install heapdump connect-flash ua-parser-js engine.io-client simplefunc
+
+#		#https://github.com/c9/install/blob/master/install.sh
+
+		project="nak"
+		echo ""
+		echo "Build: [npm install ${project}]"
+		npm install ${project}
+
+		project="pty.js"
+		echo ""
+		echo "Build: [npm install ${project}]"
+		npm install ${project}
+
+		#Strip .git directories, saves over 20Mb
+		cd plugins/
+		find . -name ".git" | xargs rm -rf
+		cd ../
+
+		cd ../
+
+		nodejs_version=$(nodejs --version)
+
+		sudo cp -v ${DIR}/systemd/cloud9 /etc/default/
+		sudo cp -v ${DIR}/systemd/cloud9.socket /lib/systemd/system/
+		sudo cp -v ${DIR}/systemd/cloud9.service /lib/systemd/system/
+		sudo systemctl daemon-reload || true
+		sudo systemctl enable cloud9.socket || true
+		sudo systemctl restart cloud9.socket || true
+	fi
 else
-	rm -Rf build/standalone
-	sync
-	sync
-
-	echo ""
-	echo "build: [./scripts/makestandalone.sh --compress]"
-	./scripts/makestandalone.sh --compress
-
-	echo ""
-	echo "build: [./build/build-standalone.sh]"
-	./build/build-standalone.sh
-
-	cd ./build/
 	if [ -d standalonebuild ] ; then
 
 		cd ./standalonebuild/

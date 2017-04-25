@@ -1,4 +1,4 @@
-From 71254f14f77adab0a87d1044faebcf8a32263190 Mon Sep 17 00:00:00 2001
+From 6a02b2b82ce5eafef1e9a8766e4efdd0cb4ecb5f Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Fri, 7 Apr 2017 12:59:55 -0500
 Subject: [PATCH 4/4] core: dont updateCore (we checkout a sha commit) and dont
