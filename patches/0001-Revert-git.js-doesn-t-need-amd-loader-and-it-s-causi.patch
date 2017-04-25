@@ -1,7 +1,7 @@
-From 396782002dc9631b08efad3bdb409762d79585d1 Mon Sep 17 00:00:00 2001
+From a882201bc38634a68a9682b1a020eb3e293ccc5b Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 14 Nov 2016 15:21:07 -0600
-Subject: [PATCH 1/4] Revert "git.js doesn't need amd-loader and it's causing a
+Subject: [PATCH 1/5] Revert "git.js doesn't need amd-loader and it's causing a
  global variable leak which makes mocha tests fail"
 
 This reverts commit 5d7d4e3b3dab1d781a2b171cf2e75e75b02d483f.

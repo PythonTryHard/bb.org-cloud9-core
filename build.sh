@@ -63,8 +63,12 @@ wfile="0004-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch"
 echo "4: patch -p1 < ${DIR}/patches/${wfile}"
 ${git_apply} ${DIR}/patches/${wfile}
 
+wfile="0005-un-home.patch"
+echo "5: patch -p1 < ${DIR}/patches/${wfile}"
+${git_apply} ${DIR}/patches/${wfile}
+
 if [ ! "x${arch}" = "xarmv7l" ] ; then
-	git format-patch -4 -o ${DIR}/patches/
+	git format-patch -5 -o ${DIR}/patches/
 #	exit
 fi
 
@@ -126,6 +130,22 @@ if [ ! "x${arch}" = "xarmv7l" ] ; then
 		cd ../
 
 		nodejs_version=$(nodejs --version)
+
+		if [ ! -d /opt/cloud9/.c9/node/bin/ ] ; then
+			mkdir -p /opt/cloud9/.c9/node/bin/ || true
+		fi
+		ln -sf /usr/bin/node /opt/cloud9/.c9/node/bin/node
+
+		echo 1 > /opt/cloud9/.c9/installed
+
+		rm -rf ~/.c9/ || true
+
+		if [ -d /var/lib/cloud9/ ] ; then
+			sudo rm -rf /var/lib/cloud9/ || true
+		fi
+
+		sudo mkdir -p /var/lib/cloud9/ || true
+		sudo chown -R 1000:1000 /var/lib/cloud9/ || true
 
 		sudo cp -v ${DIR}/systemd/cloud9 /etc/default/
 		sudo cp -v ${DIR}/systemd/cloud9.socket /lib/systemd/system/
