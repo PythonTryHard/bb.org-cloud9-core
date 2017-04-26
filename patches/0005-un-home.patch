@@ -1,37 +1,50 @@
-From 927c95bab15d7c16518192bc9781da74ac584ad8 Mon Sep 17 00:00:00 2001
+From b099541b4c6f59a4a8af06f1124e990bbd4c2374 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Tue, 25 Apr 2017 12:12:17 -0500
+Date: Tue, 25 Apr 2017 21:20:45 -0500
 Subject: [PATCH 5/5] un home
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
- configs/ide/default.js                                 |  2 +-
- plugins/c9.ide.collab/install.js                       |  6 +++---
- plugins/c9.ide.collab/server/collab-server.js          |  4 ++--
- plugins/c9.ide.configuration/configure.js              | 12 ++++++------
- plugins/c9.ide.editors/metadata.js                     |  2 +-
- plugins/c9.ide.find/find.nak.js                        |  4 ++--
- plugins/c9.ide.installer/install/install.js            |  6 +++---
- plugins/c9.ide.installer/installer.js                  |  2 +-
- plugins/c9.ide.keys/editor.js                          |  4 ++--
- plugins/c9.ide.language.go/worker/go_completer.js      |  4 ++--
- plugins/c9.ide.plugins/debug.js                        | 12 ++++++------
- plugins/c9.ide.plugins/loader.js                       | 18 +++++++++---------
- plugins/c9.ide.plugins/mock/c9.ide.example3/install.js |  6 +++---
- .../templates/plugin.installer/install.js              |  6 +++---
- plugins/c9.ide.plugins/updater-npm.js                  |  6 +++---
- plugins/c9.ide.run.build/build.js                      |  4 ++--
- plugins/c9.ide.run.debug/debuggers/gdb/gdbdebugger.js  |  2 +-
- plugins/c9.ide.run.debug/debuggers/gdb/shim.js         |  2 +-
- plugins/c9.ide.run/run.js                              |  2 +-
- plugins/c9.ide.terminal/predict_echo_test.js           |  2 +-
- plugins/c9.ide.terminal/terminal.js                    |  2 +-
- plugins/c9.ide.terminal/terminal_test.js               |  2 +-
- plugins/c9.ide.test.mocha/mocha.js                     |  2 +-
- plugins/c9.ide.test/all.js                             |  4 ++--
- plugins/c9.ide.test/testrunner.js                      |  4 ++--
- plugins/c9.vfs.server/vfs.connect.standalone.js        |  4 ++--
- 26 files changed, 62 insertions(+), 62 deletions(-)
+ configs/ide/default.js                               |  2 +-
+ local/server.js                                      |  4 ++--
+ node_modules/vfs-local/localfs.js                    |  2 +-
+ plugins/c9.cli.bridge/bridge-service.js              |  2 +-
+ plugins/c9.cli.open/restart.js                       |  2 +-
+ plugins/c9.cli/auth.bootstrap.js                     |  2 +-
+ plugins/c9.core/settings.js                          |  2 +-
+ plugins/c9.ide.collab/install.js                     | 10 +++++-----
+ plugins/c9.ide.collab/server/collab-server.js        |  6 +++---
+ plugins/c9.ide.configuration/configure.js            | 12 ++++++------
+ plugins/c9.ide.editors/metadata.js                   |  2 +-
+ plugins/c9.ide.find.infiles/findinfiles_test.js      |  2 +-
+ plugins/c9.ide.find/find.nak.js                      |  4 ++--
+ plugins/c9.ide.find/find.nak_test.js                 |  2 +-
+ plugins/c9.ide.find/install.js                       |  2 +-
+ plugins/c9.ide.installer/install/install.js          | 10 +++++-----
+ plugins/c9.ide.installer/install/intro.html          |  4 ++--
+ plugins/c9.ide.installer/installer.js                |  2 +-
+ plugins/c9.ide.keys/editor.js                        |  4 ++--
+ plugins/c9.ide.language.go/worker/go_completer.js    |  4 ++--
+ plugins/c9.ide.plugins/debug.js                      | 12 ++++++------
+ plugins/c9.ide.plugins/loader.js                     | 20 ++++++++++----------
+ .../c9.ide.plugins/mock/c9.ide.example3/install.js   | 14 +++++++-------
+ .../templates/plugin.installer/install.js            | 14 +++++++-------
+ plugins/c9.ide.plugins/updater-npm.js                |  6 +++---
+ plugins/c9.ide.run.build/build.js                    |  4 ++--
+ plugins/c9.ide.run.build/build_test.js               |  2 +-
+ .../c9.ide.run.debug/debuggers/gdb/gdbdebugger.js    |  2 +-
+ plugins/c9.ide.run.debug/debuggers/gdb/shim.js       |  4 ++--
+ plugins/c9.ide.run/run.js                            |  4 ++--
+ plugins/c9.ide.run/run_test.js                       |  2 +-
+ plugins/c9.ide.terminal/install-tmux.sh              |  4 ++--
+ plugins/c9.ide.terminal/predict_echo_test.js         |  2 +-
+ plugins/c9.ide.terminal/terminal.js                  |  2 +-
+ plugins/c9.ide.terminal/terminal_test.js             |  2 +-
+ plugins/c9.ide.test.mocha/mocha.js                   |  2 +-
+ plugins/c9.ide.test/all.js                           |  4 ++--
+ plugins/c9.ide.test/testrunner.js                    |  4 ++--
+ plugins/c9.vfs.server/vfs.connect.standalone.js      |  2 +-
+ 39 files changed, 93 insertions(+), 93 deletions(-)
 
 diff --git a/configs/ide/default.js b/configs/ide/default.js
 index 14c381eb..869655cc 100644
@@ -46,10 +59,106 @@ index 14c381eb..869655cc 100644
              node: options.nodeBin,
              local: options.local,
          },
+diff --git a/local/server.js b/local/server.js
+index 9bbfb122..2425ca2d 100644
+--- a/local/server.js
++++ b/local/server.js
+@@ -90,7 +90,7 @@ function parseArgs(argv) {
+ var server = {
+     writePIDFile : function(path){
+         function write(pid){
+-            fs.writeFile(process.env.HOME + "/.c9/pid", pid + ":" + path, 
++            fs.writeFile("/opt/cloud9/.c9/pid", pid + ":" + path, 
+                 function(err){});
+         }
+         
+@@ -141,7 +141,7 @@ var server = {
+         process.on("exit", function(){
+             if (p) p.kill();
+             
+-            fs.unlink(process.env.HOME + "/.c9/pid", function(){});
++            fs.unlink("/opt/cloud9/.c9/pid", function(){});
+         });
+         
+         var args = [
+diff --git a/node_modules/vfs-local/localfs.js b/node_modules/vfs-local/localfs.js
+index dae85e60..784e758a 100644
+--- a/node_modules/vfs-local/localfs.js
++++ b/node_modules/vfs-local/localfs.js
+@@ -1938,7 +1938,7 @@ module.exports = function setup(fsOptions) {
+                     args.push(";", "detach");
+                 
+                 options.env["LD_LIBRARY_PATH"] = (options.env["LD_LIBRARY_PATH"] 
+-                    ? options.env["LD_LIBRARY_PATH"] + ":" : "") + "~/.c9/local/lib";
++                    ? options.env["LD_LIBRARY_PATH"] + ":" : "") + "/opt/cloud9/.c9/local/lib";
+                 
+                 // Prevent welcome message
+                 options.env["ISOUTPUTPANE"] = "1";
+diff --git a/plugins/c9.cli.bridge/bridge-service.js b/plugins/c9.cli.bridge/bridge-service.js
+index 98d2ea6d..b021d0f8 100644
+--- a/plugins/c9.cli.bridge/bridge-service.js
++++ b/plugins/c9.cli.bridge/bridge-service.js
+@@ -7,7 +7,7 @@ module.exports = function (vfs, options, register) {
+     
+     var SOCKET = process.platform == "win32"
+         ? "\\\\.\\pipe\\.c9\\bridge.socket"
+-        : process.env.HOME + "/.c9/bridge.socket";
++        : "/opt/cloud9/.c9/bridge.socket";
+ 
+     function createListenClient(api) {
+         var client = net.connect(SOCKET, function(data) {
+diff --git a/plugins/c9.cli.open/restart.js b/plugins/c9.cli.open/restart.js
+index de6273ce..94cba6c9 100755
+--- a/plugins/c9.cli.open/restart.js
++++ b/plugins/c9.cli.open/restart.js
+@@ -38,7 +38,7 @@ define(function(require, exports, module) {
+         
+         function restart(callback) {
+             if (options.platform == "darwin") {
+-                fs.readFile(process.env.HOME + "/.c9/pid", function(err, data) {
++                fs.readFile("/opt/cloud9/.c9/pid", function(err, data) {
+                     if (err) return callback("Cloud9 is Not Running");
+                     
+                     data = String(data).split(":");
+diff --git a/plugins/c9.cli/auth.bootstrap.js b/plugins/c9.cli/auth.bootstrap.js
+index b5af8686..9becb39a 100644
+--- a/plugins/c9.cli/auth.bootstrap.js
++++ b/plugins/c9.cli/auth.bootstrap.js
+@@ -16,7 +16,7 @@ define(function(require, exports, module) {
+         
+         // TODO read from options
+         var AUTHURL = options.authUrl;
+-        var AUTHPATH = process.env.HOME + "/.c9/.auth";
++        var AUTHPATH = "/opt/cloud9/.c9/.auth";
+         var lastToken;
+ 
+         /***** Methods *****/
+diff --git a/plugins/c9.core/settings.js b/plugins/c9.core/settings.js
+index d50ff855..bf480d98 100644
+--- a/plugins/c9.core/settings.js
++++ b/plugins/c9.core/settings.js
+@@ -45,7 +45,7 @@ define(function(require, exports, module) {
+         var INTERVAL = 1000;
+         var PATH = {
+             "project": c9.toInternalPath(options.projectConfigPath || "/.c9") + "/project.settings",
+-            "user": c9.toInternalPath(options.userConfigPath || "~/.c9") + "/user.settings",
++            "user": c9.toInternalPath(options.userConfigPath || "/opt/cloud9/.c9") + "/user.settings",
+             "state": c9.toInternalPath(options.stateConfigFilePath || (options.stateConfigPath || "/.c9") + "/state.settings")
+         };
+         var KEYS = Object.keys(PATH);
 diff --git a/plugins/c9.ide.collab/install.js b/plugins/c9.ide.collab/install.js
-index e67b0271..b82b19ee 100644
+index e67b0271..786c16e9 100644
 --- a/plugins/c9.ide.collab/install.js
 +++ b/plugins/c9.ide.collab/install.js
+@@ -7,7 +7,7 @@ module.exports = function(session, options) {
+     win32 || session.install({
+         "name": "SQLite",
+         "description": "SQLite Database and NPM module",
+-        "cwd": "~/.c9",
++        "cwd": "/opt/cloud9/.c9",
+         "optional": true
+     }, [
+         {
 @@ -16,14 +16,14 @@ module.exports = function(session, options) {
          {
              "tar.gz": {
@@ -68,10 +177,28 @@ index e67b0271..b82b19ee 100644
              }
          }
      ]);
+@@ -31,7 +31,7 @@ module.exports = function(session, options) {
+     session.install({
+         "name": "Sequelize",
+         "description": "Sequelize NPM module",
+-        "cwd": "~/.c9",
++        "cwd": "/opt/cloud9/.c9",
+         "optional": true
+     }, {
+         "npm": ["sequelize@2.0.0-beta.0"]
 diff --git a/plugins/c9.ide.collab/server/collab-server.js b/plugins/c9.ide.collab/server/collab-server.js
-index 2c83f122..116375a6 100644
+index 2c83f122..8bf253e2 100644
 --- a/plugins/c9.ide.collab/server/collab-server.js
 +++ b/plugins/c9.ide.collab/server/collab-server.js
+@@ -2906,7 +2906,7 @@ function initSocket(userIds, callback) {
+ 
+         async.series([
+             function (next) {
+-                // Create the directoty ~/.c9 if not existing
++                // Create the directoty /opt/cloud9/.c9 if not existing
+                 Fs.mkdir(Path.dirname(projectWD), function (err) {
+                     if (err && err.code !== "EEXIST")
+                         return next(err);
 @@ -2914,7 +2914,7 @@ function initSocket(userIds, callback) {
                  });
              },
@@ -91,7 +218,7 @@ index 2c83f122..116375a6 100644
                      if (err && err.code !== "ENOENT")
                          return next(err);
 diff --git a/plugins/c9.ide.configuration/configure.js b/plugins/c9.ide.configuration/configure.js
-index ea5f1938..7bce3aea 100644
+index ea5f1938..3aaf95f7 100644
 --- a/plugins/c9.ide.configuration/configure.js
 +++ b/plugins/c9.ide.configuration/configure.js
 @@ -73,7 +73,7 @@ define(function(require, exports, module) {
@@ -131,7 +258,7 @@ index ea5f1938..7bce3aea 100644
          function editInitJs() {
              var script = settings.get("user/config/init.js") || "";
 -            openTab("~/.c9/init.js", script, "javascript", 
-+            openTab("/opt/cloud9/.c9/init.js", script, "javascript",
++            openTab("/opt/cloud9/.c9/init.js", script, "javascript", 
                  "// You can access plugins via the 'services' global variable\n" + 
                  "/*global services, plugin*/\n");
          }
@@ -157,6 +284,19 @@ index 51f149a6..55060b54 100644
           * into the tabManager and takes over the loading of the file content
           * so that the loading of the content and the metadata is synchronized.
           * This plugin is also responsible for saving the metadata back to the
+diff --git a/plugins/c9.ide.find.infiles/findinfiles_test.js b/plugins/c9.ide.find.infiles/findinfiles_test.js
+index 8dead54b..22daeb35 100644
+--- a/plugins/c9.ide.find.infiles/findinfiles_test.js
++++ b/plugins/c9.ide.find.infiles/findinfiles_test.js
+@@ -61,7 +61,7 @@ require(["lib/architect/architect", "lib/chai/chai", "/vfs-root"],
+         {
+             packagePath: "plugins/c9.ide.find/find.nak",
+             ignore: "",
+-            installPath: "~/.c9",
++            installPath: "/opt/cloud9/.c9",
+             testing: true,
+             nak: nak,
+             node: "node"
 diff --git a/plugins/c9.ide.find/find.nak.js b/plugins/c9.ide.find/find.nak.js
 index c696345e..4464316f 100644
 --- a/plugins/c9.ide.find/find.nak.js
@@ -179,8 +319,34 @@ index c696345e..4464316f 100644
                      method: "GET",
                      query: args,
                      timeout: 120000
+diff --git a/plugins/c9.ide.find/find.nak_test.js b/plugins/c9.ide.find/find.nak_test.js
+index 0163dd88..62a9c109 100644
+--- a/plugins/c9.ide.find/find.nak_test.js
++++ b/plugins/c9.ide.find/find.nak_test.js
+@@ -34,7 +34,7 @@ require(["lib/architect/architect", "lib/chai/chai", "/vfs-root"],
+             packagePath: "plugins/c9.ide.find/find.nak",
+             ignore: "file7_ignorable.rb",
+             basePath: baseProc,
+-            installPath: "~/.c9",
++            installPath: "/opt/cloud9/.c9",
+             testing: true,
+             nak: nak,
+             node: "node"
+diff --git a/plugins/c9.ide.find/install.js b/plugins/c9.ide.find/install.js
+index ad77a621..616dd36b 100644
+--- a/plugins/c9.ide.find/install.js
++++ b/plugins/c9.ide.find/install.js
+@@ -4,7 +4,7 @@ module.exports = function(session, options) {
+     session.install({
+         "name": "Nak",
+         "description": "Fast file searches for Cloud9",
+-        "cwd": "~/.c9"
++        "cwd": "/opt/cloud9/.c9"
+     }, {
+         "npm": "https://github.com/c9/nak/tarball/c9"
+     });
 diff --git a/plugins/c9.ide.installer/install/install.js b/plugins/c9.ide.installer/install/install.js
-index ab394a6a..e697e024 100644
+index ab394a6a..3e5dc32c 100644
 --- a/plugins/c9.ide.installer/install/install.js
 +++ b/plugins/c9.ide.installer/install/install.js
 @@ -18,7 +18,7 @@ module.exports = function(session, options) {
@@ -210,6 +376,45 @@ index ab394a6a..e697e024 100644
                      "dir": nodeName
                  }
              },
+@@ -55,7 +55,7 @@ module.exports = function(session, options) {
+         session.install({
+             "name": "Pty.js",
+             "description": "Pseudo Terminal support. Used by the Cloud9 Terminal",
+-            "cwd": "~/.c9"
++            "cwd": "/opt/cloud9/.c9"
+         }, {
+             "npm": ["node-gyp", "pty.js@0.3.0"]
+         });
+@@ -64,7 +64,7 @@ module.exports = function(session, options) {
+         session.install({
+             "name": "tmux", 
+             "description": "Tmux - the terminal multiplexer",
+-            "cwd": "~/.c9"
++            "cwd": "/opt/cloud9/.c9"
+         }, {
+             // // TODO this causes `sudo: no tty present and no askpass program specified` errors
+             // // and it somehow breaks "bash" install method too, also this needs to ensure
+diff --git a/plugins/c9.ide.installer/install/intro.html b/plugins/c9.ide.installer/install/intro.html
+index c6581f2f..e28fee15 100644
+--- a/plugins/c9.ide.installer/install/intro.html
++++ b/plugins/c9.ide.installer/install/intro.html
+@@ -1,14 +1,14 @@
+ <h3>Can we quickly set up Cloud9 on your workspace?</h3>
+ <p>
+     Cloud9 needs a few dependencies to be able to work with this SSH workspace.
+-    If you agree, we’ll install a few things in the ~/.c9 folder.
++    If you agree, we’ll install a few things in the /opt/cloud9/.c9 folder.
+     This will not affect any other part of your system, it’s fully self-contained!
+ </p>
+ 
+ <h4>How can I revert this later?</h4>
+ <p>
+     To fully remove Cloud9 from your machine, all you need to do is 
+-    remove the ~/.c9 folder! Nothing will be left over on your system.
++    remove the /opt/cloud9/.c9 folder! Nothing will be left over on your system.
+ </p>
+ 
+ <h4>Can I install this manually?</h4>
 diff --git a/plugins/c9.ide.installer/installer.js b/plugins/c9.ide.installer/installer.js
 index fc45f26c..308b88bc 100644
 --- a/plugins/c9.ide.installer/installer.js
@@ -322,11 +527,15 @@ index 91e150da..a590a40f 100644
                      version: plugin.version,
                      isAdditionalMode: true
 diff --git a/plugins/c9.ide.plugins/loader.js b/plugins/c9.ide.plugins/loader.js
-index 08411773..3befa33a 100644
+index 08411773..63a66d95 100644
 --- a/plugins/c9.ide.plugins/loader.js
 +++ b/plugins/c9.ide.plugins/loader.js
-@@ -109,16 +109,16 @@ define(function(require, exports, module) {
-          * List all packages on disk by scanning `~/.c9` and resolve the
+@@ -106,19 +106,19 @@ define(function(require, exports, module) {
+         }
+ 
+         /**
+-         * List all packages on disk by scanning `~/.c9` and resolve the
++         * List all packages on disk by scanning `/opt/cloud9/.c9` and resolve the
           * detected packages by order of override priority:
           *
 -         *  - Developer plugins in `~/.c9/dev/plugins` have the highest
@@ -382,9 +591,18 @@ index 08411773..3befa33a 100644
                      if (!config) return;
                      resolved[config.name] = config;
 diff --git a/plugins/c9.ide.plugins/mock/c9.ide.example3/install.js b/plugins/c9.ide.plugins/mock/c9.ide.example3/install.js
-index 7104a4db..f66a7176 100644
+index 7104a4db..57e96596 100644
 --- a/plugins/c9.ide.plugins/mock/c9.ide.example3/install.js
 +++ b/plugins/c9.ide.plugins/mock/c9.ide.example3/install.js
+@@ -6,7 +6,7 @@ module.exports = function(session, options) {
+     session.install({
+         "name": "SQLite",
+         "description": "SQLite Database and NPM module",
+-        "cwd": "~/.c9",
++        "cwd": "/opt/cloud9/.c9",
+         "optional": true
+     }, [
+         {
 @@ -15,14 +15,14 @@ module.exports = function(session, options) {
          {
              "tar.gz": {
@@ -403,10 +621,43 @@ index 7104a4db..f66a7176 100644
              }
          }
      ]);
+@@ -30,7 +30,7 @@ module.exports = function(session, options) {
+     session.install({
+         "name": "Sequalize",
+         "description": "Sequalize NPM module",
+-        "cwd": "~/.c9",
++        "cwd": "/opt/cloud9/.c9",
+         "optional": true
+     }, {
+         "npm": ["sequelize@2.0.0-beta.0"]
+@@ -39,12 +39,12 @@ module.exports = function(session, options) {
+     session.install({
+         "name": "Collab Server",
+         "description": "A small Node.js collaboration server",
+-        "cwd": "~/.c9",
++        "cwd": "/opt/cloud9/.c9",
+         "optional": true
+     }, {
+         "tar.gz": { 
+             "url": "https://raw.githubusercontent.com/c9/install/master/packages/extend/c9-vfs-extend.tar.gz",
+-            "target": "~/.c9"
++            "target": "/opt/cloud9/.c9"
+         }
+     });
+ 
 diff --git a/plugins/c9.ide.plugins/templates/plugin.installer/install.js b/plugins/c9.ide.plugins/templates/plugin.installer/install.js
-index 7104a4db..f66a7176 100644
+index 7104a4db..57e96596 100644
 --- a/plugins/c9.ide.plugins/templates/plugin.installer/install.js
 +++ b/plugins/c9.ide.plugins/templates/plugin.installer/install.js
+@@ -6,7 +6,7 @@ module.exports = function(session, options) {
+     session.install({
+         "name": "SQLite",
+         "description": "SQLite Database and NPM module",
+-        "cwd": "~/.c9",
++        "cwd": "/opt/cloud9/.c9",
+         "optional": true
+     }, [
+         {
 @@ -15,14 +15,14 @@ module.exports = function(session, options) {
          {
              "tar.gz": {
@@ -425,6 +676,30 @@ index 7104a4db..f66a7176 100644
              }
          }
      ]);
+@@ -30,7 +30,7 @@ module.exports = function(session, options) {
+     session.install({
+         "name": "Sequalize",
+         "description": "Sequalize NPM module",
+-        "cwd": "~/.c9",
++        "cwd": "/opt/cloud9/.c9",
+         "optional": true
+     }, {
+         "npm": ["sequelize@2.0.0-beta.0"]
+@@ -39,12 +39,12 @@ module.exports = function(session, options) {
+     session.install({
+         "name": "Collab Server",
+         "description": "A small Node.js collaboration server",
+-        "cwd": "~/.c9",
++        "cwd": "/opt/cloud9/.c9",
+         "optional": true
+     }, {
+         "tar.gz": { 
+             "url": "https://raw.githubusercontent.com/c9/install/master/packages/extend/c9-vfs-extend.tar.gz",
+-            "target": "~/.c9"
++            "target": "/opt/cloud9/.c9"
+         }
+     });
+ 
 diff --git a/plugins/c9.ide.plugins/updater-npm.js b/plugins/c9.ide.plugins/updater-npm.js
 index 13d89abc..82108c52 100644
 --- a/plugins/c9.ide.plugins/updater-npm.js
@@ -478,6 +753,19 @@ index 3511c4aa..eb348b10 100644
               * both the user's builders as well as the build-in builders.
               * @param {Function} callback           Called when the builders are retrieved
               * @param {Error}    callback.err       The error object if an error occurred.
+diff --git a/plugins/c9.ide.run.build/build_test.js b/plugins/c9.ide.run.build/build_test.js
+index b187662e..b19b4baf 100644
+--- a/plugins/c9.ide.run.build/build_test.js
++++ b/plugins/c9.ide.run.build/build_test.js
+@@ -62,7 +62,7 @@ require(["lib/architect/architect", "lib/chai/chai", "/vfs-root"],
+         "plugins/c9.ide.editors/tab",
+         {
+             packagePath: "plugins/c9.ide.terminal/terminal",
+-            installPath: "~/.c9"
++            installPath: "/opt/cloud9/.c9"
+         },
+         "plugins/c9.ide.run/output",
+         "plugins/c9.ide.console/console",
 diff --git a/plugins/c9.ide.run.debug/debuggers/gdb/gdbdebugger.js b/plugins/c9.ide.run.debug/debuggers/gdb/gdbdebugger.js
 index 09d7e76d..33739135 100755
 --- a/plugins/c9.ide.run.debug/debuggers/gdb/gdbdebugger.js
@@ -492,7 +780,7 @@ index 09d7e76d..33739135 100755
              fs.exists(shimPath, function(exists) {
                  if (exists) return; // TODO use localfs extend when it is ready
 diff --git a/plugins/c9.ide.run.debug/debuggers/gdb/shim.js b/plugins/c9.ide.run.debug/debuggers/gdb/shim.js
-index 1a2f33b0..442b7f98 100755
+index 1a2f33b0..73d949b6 100755
 --- a/plugins/c9.ide.run.debug/debuggers/gdb/shim.js
 +++ b/plugins/c9.ide.run.debug/debuggers/gdb/shim.js
 @@ -18,7 +18,7 @@ function printUsage() {
@@ -504,10 +792,28 @@ index 1a2f33b0..442b7f98 100755
          "  BIN: the binary to debug with GDB",
          "  args: optional arguments for BIN\n"
      ];
+@@ -30,7 +30,7 @@ var argc = process.argv.length;
+ if (argc < 3) printUsage();
+ 
+ // defaults
+-var PROXY = { sock: process.env.HOME + "/.c9/gdbdebugger.socket" };
++var PROXY = { sock: "/opt/cloud9/.c9/gdbdebugger.socket" };
+ var GDB_PORT = 15470;
+ var MAX_STACK_DEPTH = 50;
+ var DEBUG = false;
 diff --git a/plugins/c9.ide.run/run.js b/plugins/c9.ide.run/run.js
-index e288b88b..ed3f8d1a 100644
+index e288b88b..15a4bfde 100644
 --- a/plugins/c9.ide.run/run.js
 +++ b/plugins/c9.ide.run/run.js
+@@ -30,7 +30,7 @@ define(function(require, module, exports) {
+         var STARTED = 2;
+         
+         var STATIC = options.staticPrefix;
+-        var installPath = options.installPath || "~/.c9";
++        var installPath = options.installPath || "/opt/cloud9/.c9";
+         var TMUX = options.tmux || installPath + "/bin/tmux";
+         var BASH = "bash";
+         
 @@ -53,7 +53,7 @@ define(function(require, module, exports) {
                      ["path", runnerPath]
                  ]);
@@ -517,6 +823,33 @@ index e288b88b..ed3f8d1a 100644
          }
          
          /***** Methods *****/
+diff --git a/plugins/c9.ide.run/run_test.js b/plugins/c9.ide.run/run_test.js
+index 04e9b654..fbf8191c 100644
+--- a/plugins/c9.ide.run/run_test.js
++++ b/plugins/c9.ide.run/run_test.js
+@@ -72,7 +72,7 @@ require(["lib/architect/architect", "lib/chai/chai", "/vfs-root"],
+         "plugins/c9.ide.editors/tab",
+         {
+             packagePath: "plugins/c9.ide.terminal/terminal",
+-            installPath: "~/.c9"
++            installPath: "/opt/cloud9/.c9"
+         },
+         "plugins/c9.ide.run/output",
+         "plugins/c9.ide.console/console",
+diff --git a/plugins/c9.ide.terminal/install-tmux.sh b/plugins/c9.ide.terminal/install-tmux.sh
+index 809e0303..47481215 100755
+--- a/plugins/c9.ide.terminal/install-tmux.sh
++++ b/plugins/c9.ide.terminal/install-tmux.sh
+@@ -20,5 +20,5 @@ LDFLAGS="-L/opt/lib" CPPFLAGS="-I/opt/include" LIBS="-lresolv" ./configure --pre
+ make
+ #sudo make install
+ 
+-mkdir -p ~/.c9/bin
+-cp ./tmux ~/.c9/bin/tmux
+\ No newline at end of file
++mkdir -p /opt/cloud9/.c9/bin
++cp ./tmux /opt/cloud9/.c9/bin/tmux
+\ No newline at end of file
 diff --git a/plugins/c9.ide.terminal/predict_echo_test.js b/plugins/c9.ide.terminal/predict_echo_test.js
 index 4213e66f..81c22715 100644
 --- a/plugins/c9.ide.terminal/predict_echo_test.js
@@ -570,7 +903,7 @@ index 77acf236..4df21824 100644
                  exec = "istanbul";
                  args.unshift("cover", "--print", "none", "--report", 
 diff --git a/plugins/c9.ide.test/all.js b/plugins/c9.ide.test/all.js
-index 0b8bb434..6f8d1432 100644
+index 0b8bb434..e088bc41 100644
 --- a/plugins/c9.ide.test/all.js
 +++ b/plugins/c9.ide.test/all.js
 @@ -880,13 +880,13 @@ define(function(require, exports, module) {
@@ -585,7 +918,7 @@ index 0b8bb434..6f8d1432 100644
          
          function writeToCache(runner, path, cache, callback) {
 -            fs.writeFile("~/.c9/cache/" + runner.name 
-+            fs.writeFile("/opt/cloud9/.c9/cache/" + runner.name
++            fs.writeFile("/opt/cloud9/.c9/cache/" + runner.name 
                + "/" + path.replace(/\//g, "\\"), cache, function(err) {
                  callback && callback(err);
              });
@@ -612,7 +945,7 @@ index 6a63ef42..ea40cabb 100644
                  });
              }
 diff --git a/plugins/c9.vfs.server/vfs.connect.standalone.js b/plugins/c9.vfs.server/vfs.connect.standalone.js
-index 51096d8a..53db219d 100644
+index 51096d8a..6776c9d2 100644
 --- a/plugins/c9.vfs.server/vfs.connect.standalone.js
 +++ b/plugins/c9.vfs.server/vfs.connect.standalone.js
 @@ -39,7 +39,7 @@ define(function(require, exports, module) {
@@ -624,13 +957,6 @@ index 51096d8a..53db219d 100644
                  nodeBin: options.nodeBin,
                  tmuxBin: options.tmuxBin
              };
-@@ -75,4 +75,4 @@ define(function(require, exports, module) {
-             "vfs.connect": plugin
-         });
-     }
--});
-\ No newline at end of file
-+});
 -- 
 2.11.0
 

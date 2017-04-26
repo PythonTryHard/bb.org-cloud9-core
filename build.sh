@@ -22,8 +22,16 @@ if [ ! -d ${DIR}/git/ ] ; then
 	git clone ${git_repo} ${DIR}/git/
 fi
 
+if [ -d ~/.c9 ] ; then
+	rm -rf ~/.c9 || true
+else
+	if [ -f ~/.c9 ] ; then
+		rm ~/.c9 || true
+	fi
+fi
+
 if [ -d /opt/cloud9 ] ; then
-	sudo rm -rf /opt/cloud9/
+	sudo rm -rf /opt/cloud9/ || true
 fi
 
 sudo mkdir -p /opt/cloud9 || true
@@ -79,12 +87,67 @@ else
 	${git_apply} ${DIR}/patches/${wfile}
 fi
 
-wfile="0005-un-home.patch"
-echo "5: patch -p1 < ${DIR}/patches/${wfile}"
-${git_apply} ${DIR}/patches/${wfile}
+#wfile="0005-un-home.patch"
+#echo "5: patch -p1 < ${DIR}/patches/${wfile}"
+#if [ ! "x${arch}" = "xarmv7l" ] ; then
+#	# grep -R "~/.c9" ./* | awk -F ":" '{print $1}' | sort -u
+#
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./configs/ide/default.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./node_modules/vfs-local/localfs.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.core/settings.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.collab/install.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.collab/server/collab-server.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.configuration/configure.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.editors/metadata.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.find/find.nak.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.find/find.nak_test.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.find.infiles/findinfiles_test.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.find/install.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.installer/installer.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.installer/install/install.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.installer/install/intro.html
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.keys/editor.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.language.go/worker/go_completer.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.plugins/debug.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.plugins/loader.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.plugins/mock/c9.ide.example3/install.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.plugins/templates/plugin.installer/install.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.plugins/updater-npm.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.run.build/build.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.run.build/build_test.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.run.debug/debuggers/gdb/gdbdebugger.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.run.debug/debuggers/gdb/shim.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.run/run.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.run/run_test.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.terminal/install-tmux.sh
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.terminal/predict_echo_test.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.terminal/terminal.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.terminal/terminal_test.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.test/all.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.test.mocha/mocha.js
+#	sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./plugins/c9.ide.test/testrunner.js
+#	#sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./scripts/install-sdk.sh
+#	#sed -i -e 's:~/.c9:/opt/cloud9/.c9:g' ./scripts/uninstall-c9.sh
+#
+#	#grep -R 'process.env.HOME + "/.c9' ./* | awk -F ":" '{print $1}' | sort -u
+#
+#	sed -i -e 's:process.env.HOME + "/.c9/:"/opt/cloud9/.c9/:g' ./local/server.js
+#	sed -i -e 's:process.env.HOME + "/.c9/:"/opt/cloud9/.c9/:g' ./node_modules/vfs-local/localfs.js
+#	sed -i -e 's:process.env.HOME + "/.c9/:"/opt/cloud9/.c9/:g' ./plugins/c9.cli/auth.bootstrap.js
+#	sed -i -e 's:process.env.HOME + "/.c9/:"/opt/cloud9/.c9/:g' ./plugins/c9.cli.bridge/bridge-service.js
+#	sed -i -e 's:process.env.HOME + "/.c9/:"/opt/cloud9/.c9/:g' ./plugins/c9.cli.open/restart.js
+#	sed -i -e 's:process.env.HOME + "/.c9/:"/opt/cloud9/.c9/:g' ./plugins/c9.ide.run.debug/debuggers/gdb/shim.js
+#	sed -i -e 's:process.env.HOME + "/.c9/:"/opt/cloud9/.c9/:g' ./plugins/c9.vfs.server/vfs.connect.standalone.js
+#
+#	#grep -R 'process.env.HOME, "/.c9/"' ./* | awk -F ":" '{print $1}' | sort -u
+#
+#	git commit -a -m 'un home' -s
+#else
+#	${git_apply} ${DIR}/patches/${wfile}
+#fi
 
 if [ ! "x${arch}" = "xarmv7l" ] ; then
-	git format-patch -5 -o ${DIR}/patches/
+	git format-patch -4 -o ${DIR}/patches/
 #	exit
 fi
 
@@ -147,6 +210,8 @@ if [ ! "x${arch}" = "xarmv7l" ] ; then
 
 		nodejs_version=$(nodejs --version)
 
+		rm -rf ~/.c9/ || true
+
 		if [ ! -d /opt/cloud9/.c9/node/bin/ ] ; then
 			mkdir -p /opt/cloud9/.c9/node/bin/ || true
 		fi
@@ -154,7 +219,8 @@ if [ ! "x${arch}" = "xarmv7l" ] ; then
 
 		echo 1 > /opt/cloud9/.c9/installed
 
-		rm -rf ~/.c9/ || true
+		user=$(getent passwd 1000 | awk -F: '{ print $1 }')
+		ln -s /opt/cloud9/.c9/ /home/${user}/
 
 		if [ -d /var/lib/cloud9/ ] ; then
 			sudo rm -rf /var/lib/cloud9/ || true
