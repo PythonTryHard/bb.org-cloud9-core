@@ -1,6 +1,6 @@
-From 4095a4a3c65293ba17664c6c6660b8102be12bbc Mon Sep 17 00:00:00 2001
+From e6166391fa92c5014a2cfddde46e130aaf04a647 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Tue, 25 Apr 2017 12:32:44 -0500
+Date: Tue, 25 Apr 2017 20:56:31 -0500
 Subject: [PATCH 3/5] bb.org: use systemd
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>

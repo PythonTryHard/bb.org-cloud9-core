@@ -1,13 +1,13 @@
-From d0934fb56be1340b6dbad40387f00792eb36195c Mon Sep 17 00:00:00 2001
+From 8c6c0649cb8cd698e4fc3867960de4da0f3ce2da Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Mon, 21 Sep 2015 09:55:23 -0500
-Subject: [PATCH 2/5] bb.org defaults
+Date: Tue, 25 Apr 2017 20:56:31 -0500
+Subject: [PATCH 2/5] bb.org-defaults
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
  node_modules/vfs-local/localfs.js |  2 +-
- settings/standalone.js            | 17 +++++++++++------
- 2 files changed, 12 insertions(+), 7 deletions(-)
+ settings/standalone.js            | 12 ++++++------
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/node_modules/vfs-local/localfs.js b/node_modules/vfs-local/localfs.js
 index bab71109..dae85e60 100644
@@ -23,7 +23,7 @@ index bab71109..dae85e60 100644
              try {
                  pty = require(p);
 diff --git a/settings/standalone.js b/settings/standalone.js
-index 61d92268..3d458874 100644
+index 61d92268..07f30035 100644
 --- a/settings/standalone.js
 +++ b/settings/standalone.js
 @@ -24,7 +24,7 @@ module.exports = function(manifest, installPath) {
@@ -35,22 +35,20 @@ index 61d92268..3d458874 100644
      assert(home, "home directory must be set");
      
      if (!installPath)
-@@ -39,7 +39,8 @@ module.exports = function(manifest, installPath) {
+@@ -39,7 +39,7 @@ module.exports = function(manifest, installPath) {
          standalone: true,
          startBridge: true,
          manifest: manifest,
 -        workspaceDir: workspaceDir,
-+        //workspaceDir: workspaceDir,
 +        workspaceDir: "/var/lib/cloud9",
          projectName: path.basename(workspaceDir),
          homeDir: home,
          workspaceId: "devel",
-@@ -50,13 +51,16 @@ module.exports = function(manifest, installPath) {
+@@ -50,13 +50,13 @@ module.exports = function(manifest, installPath) {
          dev: true,
          sdk: sdk,
          pid: process.pid,
 -        port: process.env.PORT || 8181,
-+        //port: process.env.PORT || 8181,
 +        port: process.env.PORT || 3000,
          host: process.env.IP || (inContainer ? "0.0.0.0" : "127.0.0.1"),
          testing: false,
@@ -58,19 +56,16 @@ index 61d92268..3d458874 100644
          arch: process.arch,
 -        tmux: path.join(installPath, "bin/tmux"),
 -        nakBin: path.join(__dirname, "../node_modules/nak/bin/nak"),
-+        //tmux: path.join(installPath, "bin/tmux"),
 +        tmux: "/usr/bin/tmux",
-+        //nakBin: path.join(__dirname, "../node_modules/nak/bin/nak"),
 +        nakBin: "/opt/cloud9/build/standalonebuild/node_modules/nak/bin/nak",
          bashBin: "bash",
          nodeBin: [path.join(installPath, win32 ? "node.exe" : "node/bin/node"), process.execPath],
          installPath: installPath,
-@@ -71,7 +75,8 @@ module.exports = function(manifest, installPath) {
+@@ -71,7 +71,7 @@ module.exports = function(manifest, installPath) {
          homeUrl: "/home",
          collab: false,
          installed: true,
 -        packed: false,
-+        //packed: false,
 +        packed: true,
          packedThemes: true,
          readonly: false,

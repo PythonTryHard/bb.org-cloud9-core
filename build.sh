@@ -48,7 +48,18 @@ ${git_apply} ${DIR}/patches/${wfile}
 
 wfile="0002-bb.org-defaults.patch"
 echo "2: patch -p1 < ${DIR}/patches/${wfile}"
-${git_apply} ${DIR}/patches/${wfile}
+if [ ! "x${arch}" = "xarmv7l" ] ; then
+	sed -i -e 's:process.env.HOME + "/.c9/:"/opt/cloud9/build/standalonebuild/:g' node_modules/vfs-local/localfs.js
+	sed -i -e 's:process.env.HOME;:"/opt/cloud9/";:g' settings/standalone.js
+	sed -i -e 's:workspaceDir,:"/var/lib/cloud9",:g' settings/standalone.js
+	sed -i -e 's:8181,:3000,:g' settings/standalone.js
+	sed -i -e 's:path.join(installPath, "bin/tmux"),:"/usr/bin/tmux",:g' settings/standalone.js
+	sed -i -e 's:path.join(__dirname, "../node_modules/nak/bin/nak"),:"/opt/cloud9/build/standalonebuild/node_modules/nak/bin/nak",:g' settings/standalone.js
+	sed -i -e 's/packed: false,/packed: true,/g' settings/standalone.js
+	git commit -a -m 'bb.org-defaults' -s
+else
+	${git_apply} ${DIR}/patches/${wfile}
+fi
 
 wfile="0003-bb.org-use-systemd.patch"
 echo "3: patch -p1 < ${DIR}/patches/${wfile}"
@@ -61,7 +72,12 @@ fi
 
 wfile="0004-core-dont-updateCore-we-checkout-a-sha-commit-and-do.patch"
 echo "4: patch -p1 < ${DIR}/patches/${wfile}"
-${git_apply} ${DIR}/patches/${wfile}
+if [ ! "x${arch}" = "xarmv7l" ] ; then
+	sed -i -e 's:updateCore || true:#updateCore || true:g' scripts/install-sdk.sh
+	git commit -a -m 'core dont updateCore we checkout a sha commit and dont autorun' -s
+else
+	${git_apply} ${DIR}/patches/${wfile}
+fi
 
 wfile="0005-un-home.patch"
 echo "5: patch -p1 < ${DIR}/patches/${wfile}"
@@ -192,4 +208,5 @@ else
 fi
 
 cd ${DIR}/
+
 
