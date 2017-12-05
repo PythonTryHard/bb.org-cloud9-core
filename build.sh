@@ -96,6 +96,9 @@ mkdir -p ~/.c9/
 echo 1 > ~/.c9/installed
 
 echo ""
+echo "npm: [npm i -g npm@4.6.1]"
+sudo npm i -g npm@4.6.1
+
 echo "build: [./scripts/install-sdk.sh]"
 ./scripts/install-sdk.sh
 
@@ -216,4 +219,4 @@ fi
 
 cd ${DIR}/
 
-
+sudo npm i -g npm
