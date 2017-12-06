@@ -218,5 +218,7 @@ else
 fi
 
 cd ${DIR}/
+sudo rm -rf /usr/bin/npm || true
+sudo rm -rf /usr/lib/node_modules/npm/ || true
 
-sudo npm i -g npm
+sudo apt install nodejs --reinstall
