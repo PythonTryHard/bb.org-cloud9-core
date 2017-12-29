@@ -1,6 +1,6 @@
-From 64d455aa5f7c53f56fb17484e88538bee787dd85 Mon Sep 17 00:00:00 2001
+From 8c7543a60b0e4c6b2986b04fcf815976795ec106 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Tue, 5 Dec 2017 11:31:14 -0600
+Date: Fri, 29 Dec 2017 12:16:49 -0600
 Subject: [PATCH 3/4] bb.org: use systemd
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
@@ -66,7 +66,7 @@ index 019ac14f..1782ce8f 100644
 \ No newline at end of file
 +}
 diff --git a/package.json b/package.json
-index f0cfd8a9..8b1d59a4 100644
+index 57ede4d9..503dc3dc 100644
 --- a/package.json
 +++ b/package.json
 @@ -32,6 +32,7 @@
@@ -77,7 +77,7 @@ index f0cfd8a9..8b1d59a4 100644
          "tern": "git+https://github.com/cloud9ide/tern.git#39015d544d4c00c7899fea4c95c2e5bc2720e68e",
          "tern_from_ts": "git+https://github.com/cloud9ide/tern_from_ts.git#66df507986bbdd63f3bc4f0c53edb39169ce4f1c",
          "through": "2.2.0",
-@@ -57,4 +58,4 @@
+@@ -56,4 +57,4 @@
          "msgpack-js",
          "c9"
      ]
@@ -85,5 +85,5 @@ index f0cfd8a9..8b1d59a4 100644
 \ No newline at end of file
 +}
 -- 
-2.15.0
+2.15.1
 

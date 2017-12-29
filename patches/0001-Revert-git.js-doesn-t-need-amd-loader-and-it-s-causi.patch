@@ -1,4 +1,4 @@
-From dcc564af39d7be43e55595546ac602ace0cee3fe Mon Sep 17 00:00:00 2001
+From fa70333ecb30e43b3baa0badcaf7d4aefa38c22a Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 14 Nov 2016 15:21:07 -0600
 Subject: [PATCH 1/4] Revert "git.js doesn't need amd-loader and it's causing a
@@ -24,5 +24,5 @@ index 6228914a..dea02285 100644
  var Path = require("path");
  var exec = require("child_process").exec;
 -- 
-2.15.0
+2.15.1
 

@@ -1,6 +1,6 @@
-From ce204e349e4ed51e292ce6b898d86b18aab1db33 Mon Sep 17 00:00:00 2001
+From c7d31c77676052541ca3fbb1333f2061975d97d0 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Tue, 5 Dec 2017 11:31:14 -0600
+Date: Fri, 29 Dec 2017 12:16:49 -0600
 Subject: [PATCH 4/4] core dont updateCore we checkout a sha commit and dont
  autorun
 
@@ -23,5 +23,5 @@ index 7acfd55b..ac6685ce 100755
  installGlobalDeps
  updateNodeModules
 -- 
-2.15.0
+2.15.1
 
