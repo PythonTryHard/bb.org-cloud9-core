@@ -57,7 +57,7 @@ ${git_apply} ${DIR}/patches/${wfile}
 wfile="0002-bb.org-defaults.patch"
 echo "2: patch -p1 < ${DIR}/patches/${wfile}"
 if [ ! "x${arch}" = "xarmv7l" ] ; then
-	sed -i -e 's:process.env.HOME + "/.c9/:"/opt/cloud9/build/standalonebuild/:g' plugins/node_modules/vfs-local/localfs.js
+	sed -i -e 's:process.env.HOME + "/.c9/:"/opt/cloud9/build/standalonebuild/:g' node_modules/vfs-local/localfs.js
 	sed -i -e 's:process.env.HOME;:"/opt/cloud9/";:g' settings/standalone.js
 	sed -i -e 's:workspaceDir,:"/var/lib/cloud9",:g' settings/standalone.js
 	sed -i -e 's:8181,:3000,:g' settings/standalone.js
@@ -98,8 +98,6 @@ echo 1 > ~/.c9/installed
 echo ""
 echo "npm: [npm i -g npm@4.6.1]"
 sudo npm i -g npm@4.6.1
-
-pwd
 
 echo "build: [./scripts/install-sdk.sh]"
 ./scripts/install-sdk.sh
