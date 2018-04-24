@@ -1,6 +1,6 @@
-From 9b6914a682f49e4cfb2725f9666a4e49c10f3b14 Mon Sep 17 00:00:00 2001
+From 80c6f13a8c802dad13b80afb78354c453714b5c5 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Tue, 24 Apr 2018 09:11:19 -0500
+Date: Tue, 24 Apr 2018 09:49:54 -0500
 Subject: [PATCH 4/4] core dont updateCore we checkout a sha commit and dont
  autorun
 
@@ -10,10 +10,10 @@ Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/scripts/install-sdk.sh b/scripts/install-sdk.sh
-index 7acfd55b..ac6685ce 100755
+index 00335604..2b928265 100755
 --- a/scripts/install-sdk.sh
 +++ b/scripts/install-sdk.sh
-@@ -106,7 +106,7 @@ NODE=node
+@@ -108,7 +108,7 @@ NODE=node
  rm -rf ./build/standalone
  
  # pull the latest version
