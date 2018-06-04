@@ -95,9 +95,20 @@ fi
 mkdir -p ~/.c9/
 echo 1 > ~/.c9/installed
 
+#echo ""
+#echo "npm: [npm i -g npm@4.6.1]"
+#sudo npm i -g npm@4.6.1
+
 echo ""
-echo "npm: [npm i -g npm@4.6.1]"
-sudo npm i -g npm@4.6.1
+echo "Installing: npm-4.6.1.tgz from source"
+wget -c https://registry.npmjs.org/npm/-/npm-4.6.1.tgz
+if [ -d ./package/ ] ; then
+	rm -rf ./package/
+fi
+tar xf npm-4.6.1.tgz
+cd ./package/
+sudo make install
+cd ../
 
 echo "build: [./scripts/install-sdk.sh]"
 ./scripts/install-sdk.sh
