@@ -1,13 +1,13 @@
-From 2669d0efbb7798ef0bcd69b8b75499df713e2b60 Mon Sep 17 00:00:00 2001
+From 8c7543a60b0e4c6b2986b04fcf815976795ec106 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Tue, 24 Apr 2018 09:11:18 -0500
+Date: Fri, 29 Dec 2017 12:16:49 -0600
 Subject: [PATCH 3/4] bb.org: use systemd
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
- .../connect.remote-address/remote-address.js       | 14 +++-----------
- .../connect-architect/connect/connect-plugin.js    |  8 ++++++--
- package.json                                       |  3 ++-
+ .../connect.remote-address/remote-address.js               | 14 +++-----------
+ node_modules/connect-architect/connect/connect-plugin.js   |  8 ++++++--
+ package.json                                               |  3 ++-
  3 files changed, 11 insertions(+), 14 deletions(-)
 
 diff --git a/node_modules/connect-architect/connect.remote-address/remote-address.js b/node_modules/connect-architect/connect.remote-address/remote-address.js
@@ -66,7 +66,7 @@ index 019ac14f..1782ce8f 100644
 \ No newline at end of file
 +}
 diff --git a/package.json b/package.json
-index c1531315..024f6d91 100644
+index 57ede4d9..503dc3dc 100644
 --- a/package.json
 +++ b/package.json
 @@ -32,6 +32,7 @@
@@ -85,5 +85,5 @@ index c1531315..024f6d91 100644
 \ No newline at end of file
 +}
 -- 
-2.17.0
+2.15.1
 
