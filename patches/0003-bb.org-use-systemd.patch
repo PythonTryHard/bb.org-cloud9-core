@@ -1,6 +1,6 @@
-From 70a9d01b50c5811f3b35d78cb32867774a3a5c8f Mon Sep 17 00:00:00 2001
+From 6cf187feb799da622412577b81559245eaf79418 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Mon, 11 Jun 2018 16:24:08 -0500
+Date: Mon, 11 Jun 2018 16:44:04 -0500
 Subject: [PATCH 3/5] bb.org: use systemd
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
@@ -66,11 +66,11 @@ index 019ac14f..1782ce8f 100644
 \ No newline at end of file
 +}
 diff --git a/package.json b/package.json
-index 2bbb11b6..32e3cdb5 100644
+index 445e5f26..f2e0c4d7 100644
 --- a/package.json
 +++ b/package.json
 @@ -32,6 +32,7 @@
-         "rusha": "0.8.5",
+         "rusha": "^0.8.3",
          "send": "~0.1.4",
          "simple-mime": "~0.0.8",
 +        "systemd": "0.3.1",
