@@ -1,0 +1,43 @@
+From e0157582f17d6bd6ec3645b392b2ae8b5733a9bc Mon Sep 17 00:00:00 2001
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Mon, 11 Jun 2018 16:24:09 -0500
+Subject: [PATCH 5/5] partial revert of:
+ https://github.com/c9/core/commit/481fd4742103a69760af5f636ac817717c263028
+
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+---
+ configs/standalone.js | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/configs/standalone.js b/configs/standalone.js
+index 191ac427..54350d03 100644
+--- a/configs/standalone.js
++++ b/configs/standalone.js
+@@ -46,8 +46,6 @@ module.exports = function(config, optimist) {
+             .describe("secure", "path to file containing ssl certificate (can be generated using scripts/create-cert.sh)");
+     }
+ 
+-    require("./utils/ssl")(config, optimist);
+-
+     var argv = optimist.argv;
+     if (argv.help)
+         return null;
+@@ -114,6 +112,15 @@ module.exports = function(config, optimist) {
+         console.log("or use -a username:password to setup HTTP authentication\n");
+     }
+ 
++    if (argv.secure) {
++        var certPath = path.isAbsolute(argv.secure) ? argv.secure : path.join(__dirname, "..", argv.secure);
++        var key = require("fs").readFileSync(certPath, "utf8");
++        config.secure = {
++            key: key.match(/^(-+BEGIN RSA PRIVATE KEY[\s\S]*END RSA PRIVATE KEY-+)/m)[0],
++            cert: key.match(/^(-+BEGIN CERTIFICATE[\s\S]*END CERTIFICATE-+)/m)[0],
++        };
++    }
++
+     var plugins = [
+         {
+             packagePath: "connect-architect/connect",
+-- 
+2.17.1
+

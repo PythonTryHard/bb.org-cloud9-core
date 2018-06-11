@@ -1,7 +1,7 @@
-From f9810db17f7c62441deada49a88c51908663ede5 Mon Sep 17 00:00:00 2001
+From d3b5c93e969fb2709ba17d8099f247b99faac5b6 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Fri, 29 Dec 2017 12:16:49 -0600
-Subject: [PATCH 2/4] bb.org-defaults
+Date: Mon, 11 Jun 2018 16:24:08 -0500
+Subject: [PATCH 2/5] bb.org-defaults
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
@@ -10,7 +10,7 @@ Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
  2 files changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/node_modules/vfs-local/localfs.js b/node_modules/vfs-local/localfs.js
-index 03b91601..649b36da 100644
+index f3676cd0..a15869b5 100644
 --- a/node_modules/vfs-local/localfs.js
 +++ b/node_modules/vfs-local/localfs.js
 @@ -79,7 +79,7 @@ module.exports = function setup(fsOptions) {
@@ -71,5 +71,5 @@ index 61d92268..07f30035 100644
          readonly: false,
          role: "a",
 -- 
-2.15.1
+2.17.1
 

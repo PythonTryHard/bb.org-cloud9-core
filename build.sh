@@ -87,9 +87,18 @@ else
 	${git_apply} ${DIR}/patches/${wfile}
 fi
 
+wfile="0005-partial-revert-of-https-github.com-c9-core-commit-48.patch"
+echo "5: patch -p1 < ${DIR}/patches/${wfile}"
 if [ ! "x${arch}" = "xarmv7l" ] ; then
-	git format-patch -4 -o ${DIR}/patches/
-#	exit
+	patch -p1 < ${DIR}/patches/${wfile}
+	git commit -a -m 'partial revert of: https://github.com/c9/core/commit/481fd4742103a69760af5f636ac817717c263028' -s
+else
+	${git_apply} ${DIR}/patches/${wfile}
+fi
+
+if [ ! "x${arch}" = "xarmv7l" ] ; then
+	git format-patch -5 -o ${DIR}/patches/
+	#exit
 fi
 
 mkdir -p ~/.c9/
