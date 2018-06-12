@@ -1,6 +1,6 @@
-From 184322b729c2cefb260ea3949441a9310bae6136 Mon Sep 17 00:00:00 2001
+From b583bbecbc9a4734fd3a0640a896c1f17b107bd2 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Tue, 12 Jun 2018 09:20:53 -0500
+Date: Tue, 12 Jun 2018 09:43:13 -0500
 Subject: [PATCH 5/5] partial revert of:
  https://github.com/c9/core/commit/481fd4742103a69760af5f636ac817717c263028
 

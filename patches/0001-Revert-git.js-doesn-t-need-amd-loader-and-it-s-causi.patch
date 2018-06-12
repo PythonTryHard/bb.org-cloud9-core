@@ -1,4 +1,4 @@
-From 6f8716569047bd25fc0ad84421ce8cc586eb83a1 Mon Sep 17 00:00:00 2001
+From 8d76e26bd7c07365d2837cd7aadf5b918d094435 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Mon, 14 Nov 2016 15:21:07 -0600
 Subject: [PATCH 1/5] Revert "git.js doesn't need amd-loader and it's causing a
