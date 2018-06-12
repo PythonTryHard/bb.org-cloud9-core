@@ -11,7 +11,11 @@ package_source="${package_name}_${package_version}.orig.tar.xz"
 src_dir="${package_name}_${package_version}"
 
 git_repo="https://github.com/c9/core.git"
-git_sha="6cdaa6323059efe69e6ea55bd87b820a80c97948"
+old_git_sha="6e23b7834b04ed035a15d6b2c0b651dd6cd7d3ff"
+    git_sha="6cdaa6323059efe69e6ea55bd87b820a80c97948"
+
+#https://github.com/c9/core/compare/6e23b7834b04ed035a15d6b2c0b651dd6cd7d3ff...6cdaa6323059efe69e6ea55bd87b820a80c97948
+
 reprepro_dir="c/${package_name}"
 dl_path=""
 
