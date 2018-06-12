@@ -1,6 +1,6 @@
-From 587fc30ee32d674473d0deabc4361d335beafdc4 Mon Sep 17 00:00:00 2001
+From 67b705e31c1b7c195535c5dc9fbeee2d778c5e37 Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
-Date: Mon, 11 Jun 2018 16:24:09 -0500
+Date: Tue, 12 Jun 2018 09:20:53 -0500
 Subject: [PATCH 4/5] core dont updateCore we checkout a sha commit and dont
  autorun
 

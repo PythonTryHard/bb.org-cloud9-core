@@ -2,16 +2,16 @@
 
 #https://github.com/c9/core
 
-#https://github.com/c9/core/commits/master?after=15911b3ed65e69efd27d19683a2ac90c69ca4242+99
+#https://github.com/c9/core/commits/master?after=15911b3ed65e69efd27d19683a2ac90c69ca4242+90
 
 package_name="c9-core"
 debian_pkg_name="${package_name}"
-package_version="3.1.5000.git20180124"
+package_version="3.1.5000.git20180205"
 package_source="${package_name}_${package_version}.orig.tar.xz"
 src_dir="${package_name}_${package_version}"
 
 git_repo="https://github.com/c9/core.git"
-git_sha="6e23b7834b04ed035a15d6b2c0b651dd6cd7d3ff"
+git_sha="6cdaa6323059efe69e6ea55bd87b820a80c97948"
 reprepro_dir="c/${package_name}"
 dl_path=""
 
